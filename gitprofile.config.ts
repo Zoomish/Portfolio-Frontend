@@ -71,7 +71,7 @@ const CONFIG = {
     telegram: 'ZoomishWork',
     website: 'https://www.arifszn.com',
     phone: '+79937534613',
-    email: 'arifulalamszn@gmail.com',
+    email: 'zoomish39@gmail.com',
   },
   resume: {
     fileUrl:
