@@ -71,7 +71,7 @@ const CONFIG = {
     skype: '',
     telegram: 'ZoomishWork',
     website: 'https://www.arifszn.com',
-    phone: '',
+    phone: '+79937534613',
     email: 'arifulalamszn@gmail.com',
   },
   resume: {
