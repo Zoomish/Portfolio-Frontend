@@ -48,36 +48,5 @@
     "vite": "^6.0.3",
     "vite-plugin-html": "^3.2.2",
     "vite-plugin-pwa": "^0.21.1"
-  },
-  "keywords": [
-    "git-profile",
-    "gitprofile",
-    "gitportfolio",
-    "personal-site",
-    "template",
-    "portfolio",
-    "resume",
-    "cv",
-    "personal-website",
-    "portfolio-website",
-    "portfolio-site",
-    "portfolio-template",
-    "portfolio-page",
-    "developer-portfolio",
-    "portfolio-project",
-    "github-portfolio",
-    "tailwind-portfolio",
-    "vite-portfolio",
-    "projects",
-    "open-source",
-    "git",
-    "react-portfolio",
-    "github",
-    "github-page",
-    "github-pages",
-    "github-portfolio",
-    "vite-portfolio",
-    "academic-portfolio",
-    "github-api"
-  ]
+  }
 }
