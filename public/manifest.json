@@ -1,21 +1,8 @@
 {
-    "short_name":"Slate",
-    "name":"SLATE (The Online Scheduler)",
-    "description":"A simple To-Do list application.",
-    "icons":[
-      
-      {
-        "src":"images/logophone.png",
-        "type":"image/png",
-        "sizes":"187x91"
-      },
-      {
-        "src":"images/logo.png",
-        "type":"image/png",
-        "sizes":"519x151"
-      }
-    ],
-    "start_url":"home.ejs",
+    "short_name":"Zoomish Portfolio",
+    "name":"Zoomish Portfolio",
+    "description":"My Portfolio",
+    "author": "Zoomish",
     "display":"standalone",
     "background_color":"#45ff61",
     "theme_color":"#45ff61",
