@@ -1,16 +1,12 @@
 {
-  "name": "@arifszn/gitprofile",
+  "name": "@zoomish/portfolio",
   "description": "Create an automatic portfolio based on GitHub profile",
   "version": "3.1.0",
   "type": "module",
-  "license": "MIT",
-  "author": "arifszn",
+  "author": "Zoomish",
   "repository": {
     "type": "git",
-    "url": "https://github.com/arifszn/gitprofile.git"
-  },
-  "bugs": {
-    "url": "https://github.com/arifszn/gitprofile/issues"
+    "url": "https://github.com/Zoomish/Portfolio-Frontend.git"
   },
   "scripts": {
     "dev": "vite",
