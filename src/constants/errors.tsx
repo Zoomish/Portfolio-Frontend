@@ -37,17 +37,6 @@ export const setTooManyRequestError = (resetTime: string): CustomError => {
   };
 };
 
-export const INVALID_GITHUB_USERNAME_ERROR: CustomError = {
-  status: 404,
-  title: 'Invalid GitHub Username!',
-  subTitle: (
-    <p>
-      Please provide correct github username in{' '}
-      <code>gitprofile.config.ts</code>.
-    </p>
-  ),
-};
-
 export const GENERIC_ERROR: CustomError = {
   status: 500,
   title: 'Oops!!',

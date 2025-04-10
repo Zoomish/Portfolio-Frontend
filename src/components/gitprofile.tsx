@@ -1,35 +1,34 @@
-import { useCallback, useEffect, useState } from 'react';
 import axios, { AxiosError } from 'axios';
 import { formatDistance } from 'date-fns';
+import { useCallback, useEffect, useState } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
+import '../assets/index.css';
+import { BG_COLOR } from '../constants';
+import { DEFAULT_THEMES } from '../constants/default-themes';
 import {
   CustomError,
   GENERIC_ERROR,
   INVALID_CONFIG_ERROR,
-  INVALID_GITHUB_USERNAME_ERROR,
   setTooManyRequestError,
 } from '../constants/errors';
-import { HelmetProvider } from 'react-helmet-async';
-import '../assets/index.css';
-import { getInitialTheme, getSanitizedConfig, setupHotjar } from '../utils';
-import { SanitizedConfig } from '../interfaces/sanitized-config';
-import ErrorPage from './error-Page';
-import HeadTagEditor from './headTagEditor';
-import { DEFAULT_THEMES } from '../constants/default-themes';
-import ThemeChanger from './themeChanger';
-import { BG_COLOR } from '../constants';
-import AvatarCard from './avatarCard';
-import { Profile } from '../interfaces/profile';
-import DetailsCard from './detailsCard';
-import SkillCard from './skillCard';
-import ExperienceCard from './experienceCard';
-import EducationCard from './educationCard';
-import CertificationCard from './certificationCard';
 import { GithubProject } from '../interfaces/github-project';
-import GithubProjectCard from './githubProjectCard';
-import ExternalProjectCard from './externalProjectCard';
+import { Profile } from '../interfaces/profile';
+import { SanitizedConfig } from '../interfaces/sanitized-config';
+import { getInitialTheme, getSanitizedConfig, setupHotjar } from '../utils';
+import AvatarCard from './avatarCard';
 import BlogCard from './blogCard';
+import CertificationCard from './certificationCard';
+import DetailsCard from './detailsCard';
+import EducationCard from './educationCard';
+import ErrorPage from './error-Page';
+import ExperienceCard from './experienceCard';
+import ExternalProjectCard from './externalProjectCard';
 import Footer from './footer';
+import GithubProjectCard from './githubProjectCard';
+import HeadTagEditor from './headTagEditor';
 import PublicationCard from './publicationCard';
+import SkillCard from './skillCard';
+import ThemeChanger from './themeChanger';
 
 /**
  * Renders the GitProfile component.
@@ -157,16 +156,10 @@ const GitProfile = ({ config }: { config: Config }) => {
         );
 
         if (typeof error.response?.status === 'number') {
-          switch (error.response.status) {
-            case 403:
-              setError(setTooManyRequestError(reset));
-              break;
-            case 404:
-              setError(INVALID_GITHUB_USERNAME_ERROR);
-              break;
-            default:
-              setError(GENERIC_ERROR);
-              break;
+          if (error.response.status === 403) {
+            setError(setTooManyRequestError(reset));
+          } else {
+            setError(GENERIC_ERROR);
           }
         } else {
           setError(GENERIC_ERROR);
