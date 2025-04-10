@@ -69,7 +69,7 @@ const CONFIG = {
     stackoverflow: '',
     skype: '',
     telegram: 'ZoomishWork',
-    website: 'https://zoomish-portfolio.vercel.app/',
+    website: 'https://zoomish-portfolio.vercel.app',
     phone: '+79937534613',
     email: 'zoomish39@gmail.com',
   },
