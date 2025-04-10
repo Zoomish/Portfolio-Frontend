@@ -48,7 +48,7 @@ const CONFIG = {
     },
   },
   seo: {
-    title: 'Portfolio of Ariful Alam',
+    title: 'Zoomish Portfolio',
     description: '',
     imageURL: '',
   },
@@ -69,7 +69,7 @@ const CONFIG = {
     dev: '',
     stackoverflow: '',
     skype: '',
-    telegram: '',
+    telegram: 'ZoomishWork',
     website: 'https://www.arifszn.com',
     phone: '',
     email: 'arifulalamszn@gmail.com',
