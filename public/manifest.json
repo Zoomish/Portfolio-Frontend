@@ -3,12 +3,11 @@
     "name":"Zoomish Portfolio",
     "description":"Я Резвый Егор, Senior Frontend developer с 6+ годами опыта. Я превращаю идеи в быстрые и удобные интерфейсы, с которыми приятно работать.",
     "author": "Zoomish",
-    "icons":[
+    "icons":
         {
-            "src":"./favicon-16x16",
-            "sizes":"16x16"
-        }
-    ],
+            "16": "favicon-16x16.png",
+            "32": "favicon-32x32.png"
+        },
     "display":"standalone",
     "background_color":"#45ff61",
     "theme_color":"#45ff61",

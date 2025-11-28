@@ -49,13 +49,13 @@ const CONFIG = {
       'https://drive.google.com/file/d/1t_nIowHjVxXbIZDq55XwMDpLaKxD4D8s/preview',
   },
   social: {
-    linkedin: '',
+    linkedin: 'zoomish',
     x: '',
     mastodon: '',
     researchGate: '',
     facebook: '',
     instagram: '',
-    reddit: '',
+    reddit: 'zoomish',
     threads: '',
     youtube: '',
     udemy: '',
@@ -67,7 +67,6 @@ const CONFIG = {
     skype: '',
     telegram: 'ZoomishWork',
     website: 'https://zoomish-portfolio.vercel.app',
-    phone: '+79937534613',
     email: 'zoomish39@gmail.com',
   },
   resume: {
