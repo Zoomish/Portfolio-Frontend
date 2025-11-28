@@ -1,7 +1,7 @@
 {
-    "short_name":"Zoomish Portfolio",
+    "short_name":"Portfolio",
     "name":"Zoomish Portfolio",
-    "description":"My Portfolio",
+    "description":"Я Senior Frontend developer с 6+ годами опыта, который создал этот сайт на React. Я превращаю идеи в быстрые и удобные интерфейсы, с которыми приятно работать.",
     "author": "Zoomish",
     "display":"standalone",
     "background_color":"#45ff61",

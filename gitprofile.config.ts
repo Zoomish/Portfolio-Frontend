@@ -43,8 +43,10 @@ const CONFIG = {
   },
   seo: {
     title: 'Zoomish Portfolio',
-    description: '',
-    imageURL: '',
+    description:
+      'Я Senior Frontend developer с 6+ годами опыта, который создал этот сайт на React. Я превращаю идеи в быстрые и удобные интерфейсы, с которыми приятно работать.',
+    imageURL:
+      'https://drive.google.com/file/d/1t_nIowHjVxXbIZDq55XwMDpLaKxD4D8s/preview',
   },
   social: {
     linkedin: '',
