@@ -1,8 +1,14 @@
 {
     "short_name":"Portfolio",
     "name":"Zoomish Portfolio",
-    "description":"Я Senior Frontend developer с 6+ годами опыта, который создал этот сайт на React. Я превращаю идеи в быстрые и удобные интерфейсы, с которыми приятно работать.",
+    "description":"Я Резвый Егор, Senior Frontend developer с 6+ годами опыта. Я превращаю идеи в быстрые и удобные интерфейсы, с которыми приятно работать.",
     "author": "Zoomish",
+    "icons":[
+        {
+            "src":"./favicon-16x16",
+            "sizes":"16x16"
+        }
+    ],
     "display":"standalone",
     "background_color":"#45ff61",
     "theme_color":"#45ff61",
