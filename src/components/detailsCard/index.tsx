@@ -22,12 +22,12 @@ import {
 import { FaSquareThreads } from 'react-icons/fa6';
 import { MdLocationOn } from 'react-icons/md';
 import { RiMailFill, RiPhoneFill } from 'react-icons/ri';
-import { SiResearchgate, SiX, SiUdemy } from 'react-icons/si';
+import { SiResearchgate, SiUdemy, SiX } from 'react-icons/si';
 import { Profile } from '../../interfaces/profile';
 import {
   SanitizedGithub,
   SanitizedSocial,
-} from '../../interfaces/sanitized-config';
+} from '../../interfaces/sanitizedConfig';
 import { skeleton } from '../../utils';
 
 type Props = {

@@ -1,13 +1,13 @@
 import { hotjar } from 'react-hotjar';
 import { LOCAL_STORAGE_KEY_NAME } from '../constants';
-import { DEFAULT_CUSTOM_THEME } from '../constants/default-custom-theme';
-import { DEFAULT_THEMES } from '../constants/default-themes';
+import { DEFAULT_CUSTOM_THEME } from '../constants/defaultCustomTheme';
+import { DEFAULT_THEMES } from '../constants/defaultThemes';
 import colors from '../data/colors.json';
 import {
   SanitizedConfig,
   SanitizedHotjar,
   SanitizedThemeConfig,
-} from '../interfaces/sanitized-config';
+} from '../interfaces/sanitizedConfig';
 
 export const isDarkishTheme = (appliedTheme: string): boolean => {
   return ['dark', 'halloween', 'forest', 'black', 'luxury', 'dracula'].includes(

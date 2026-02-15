@@ -1,8 +1,8 @@
-import { AiOutlineControl } from 'react-icons/ai';
-import { SanitizedThemeConfig } from '../../interfaces/sanitized-config';
-import { LOCAL_STORAGE_KEY_NAME } from '../../constants';
-import { skeleton } from '../../utils';
 import { MouseEvent } from 'react';
+import { AiOutlineControl } from 'react-icons/ai';
+import { LOCAL_STORAGE_KEY_NAME } from '../../constants';
+import { SanitizedThemeConfig } from '../../interfaces/sanitizedConfig';
+import { skeleton } from '../../utils';
 
 /**
  * Renders a theme changer component.

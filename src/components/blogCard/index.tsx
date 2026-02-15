@@ -3,7 +3,7 @@ import { formatDistance } from 'date-fns';
 import { useEffect, useState } from 'react';
 import { AiOutlineContainer } from 'react-icons/ai';
 import { Article } from '../../interfaces/article';
-import { SanitizedBlog } from '../../interfaces/sanitized-config';
+import { SanitizedBlog } from '../../interfaces/sanitizedConfig';
 import { ga, skeleton } from '../../utils';
 import LazyImage from '../lazyImage';
 

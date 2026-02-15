@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { SanitizedExperience } from '../../interfaces/sanitized-config';
+import { SanitizedExperience } from '../../interfaces/sanitizedConfig';
 import { skeleton } from '../../utils';
 
 const ListItem = ({

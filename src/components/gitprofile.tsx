@@ -4,16 +4,16 @@ import { useCallback, useEffect, useState } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import '../assets/index.css';
 import { BG_COLOR } from '../constants';
-import { DEFAULT_THEMES } from '../constants/default-themes';
+import { DEFAULT_THEMES } from '../constants/defaultThemes';
 import {
   CustomError,
   GENERIC_ERROR,
   INVALID_CONFIG_ERROR,
   setTooManyRequestError,
 } from '../constants/errors';
-import { GithubProject } from '../interfaces/github-project';
+import { GithubProject } from '../interfaces/githubProject';
 import { Profile } from '../interfaces/profile';
-import { SanitizedConfig } from '../interfaces/sanitized-config';
+import { SanitizedConfig } from '../interfaces/sanitizedConfig';
 import { getInitialTheme, getSanitizedConfig, setupHotjar } from '../utils';
 import AvatarCard from './avatarCard';
 import BlogCard from './blogCard';

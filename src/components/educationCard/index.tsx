@@ -1,5 +1,5 @@
 import React from 'react';
-import { SanitizedEducation } from '../../interfaces/sanitized-config';
+import { SanitizedEducation } from '../../interfaces/sanitizedConfig';
 import { skeleton } from '../../utils';
 
 const ListItem = ({
