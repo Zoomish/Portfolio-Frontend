@@ -16,7 +16,6 @@ import GithubCard from './components/githubCard';
 import HeadTagEditor from './components/headTagEditor';
 import PublicationsCard from './components/publicationsCard';
 import SkillCard from './components/skillCard';
-import ThemeChanger from './components/themeChanger';
 
 const getInitialTheme = (): string => {
   const { themeConfig } = APP_CONFIG;
@@ -81,14 +80,14 @@ function App() {
             {/* ── Left sidebar ───────────────────────────────────── */}
             <div className="col-span-1">
               <div className="grid grid-cols-1 gap-6">
-                {!themeConfig.disableSwitch && (
+                {/* {!themeConfig.disableSwitch && (
                   <ThemeChanger
                     theme={theme}
                     setTheme={setTheme}
                     loading={loading}
                     themeConfig={themeConfig}
                   />
-                )}
+                )} */}
                 <AvatarCard
                   profile={profile}
                   loading={loading}
@@ -121,6 +120,7 @@ function App() {
                 {posts.length > 0 || linkedinLoading ? (
                   <PublicationsCard posts={posts} loading={linkedinLoading} />
                 ) : null}
+                <AboutCard about={profile?.about ?? null} loading={loading} />
                 {externalProjects.projects.length > 0 && (
                   <ExternalProjectCard
                     loading={false}
@@ -129,7 +129,6 @@ function App() {
                     googleAnalyticId={googleAnalyticsId}
                   />
                 )}
-                <AboutCard about={profile?.about ?? null} loading={loading} />
               </div>
             </div>
           </div>
