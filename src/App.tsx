@@ -117,10 +117,10 @@ function App() {
             <div className="lg:col-span-2 col-span-1">
               <div className="grid grid-cols-1 gap-6">
                 <GithubCard repos={repos} loading={githubLoading} />
+                <AboutCard about={profile?.about ?? null} loading={loading} />
                 {posts.length > 0 || linkedinLoading ? (
                   <PublicationsCard posts={posts} loading={linkedinLoading} />
                 ) : null}
-                <AboutCard about={profile?.about ?? null} loading={loading} />
                 {externalProjects.projects.length > 0 && (
                   <ExternalProjectCard
                     loading={false}

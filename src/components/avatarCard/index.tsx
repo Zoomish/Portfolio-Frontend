@@ -43,6 +43,13 @@ const AvatarCard: React.FC<AvatarCardProps> = ({
                   shape: '',
                 })}
               />
+              {!loading && profile?.open_to_work && (
+                <div className="absolute -top-1 -right-16">
+                  <span className="badge badge-success badge-sm text-md font-bold text-white">
+                    #Open to Work
+                  </span>
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -62,13 +69,6 @@ const AvatarCard: React.FC<AvatarCardProps> = ({
               ? skeleton({ widthCls: 'w-48', heightCls: 'h-5' })
               : profile.headline}
           </div>
-          {!loading && profile?.open_to_work && (
-            <div className="mt-2">
-              <span className="badge badge-success badge-sm text-xs opacity-80">
-                #Open to Work
-              </span>
-            </div>
-          )}
         </div>
 
         {resumeFileUrl &&
