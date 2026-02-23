@@ -25,15 +25,27 @@ const ExternalProjectCard = ({
               <div className="flex items-start px-4">
                 <div className="w-full">
                   <h2>
-                    {skeleton({ widthCls: 'w-32', heightCls: 'h-8', className: 'mb-2 mx-auto' })}
+                    {skeleton({
+                      widthCls: 'w-32',
+                      heightCls: 'h-8',
+                      className: 'mb-2 mx-auto',
+                    })}
                   </h2>
                   <div className="avatar w-full h-full">
                     <div className="w-24 h-24 mask mask-squircle mx-auto">
-                      {skeleton({ widthCls: 'w-full', heightCls: 'h-full', shape: '' })}
+                      {skeleton({
+                        widthCls: 'w-full',
+                        heightCls: 'h-full',
+                        shape: '',
+                      })}
                     </div>
                   </div>
                   <div className="mt-2">
-                    {skeleton({ widthCls: 'w-full', heightCls: 'h-4', className: 'mx-auto' })}
+                    {skeleton({
+                      widthCls: 'w-full',
+                      heightCls: 'h-4',
+                      className: 'mx-auto',
+                    })}
                   </div>
                 </div>
               </div>
@@ -56,7 +68,9 @@ const ExternalProjectCard = ({
           if (googleAnalyticId) {
             try {
               // GA event (optional)
-              (window as any).gtag?.('event', 'Click External Project', { post: item.title });
+              (window as any).gtag?.('event', 'Click External Project', {
+                post: item.title,
+              });
             } catch {}
           }
           window?.open(item.link, '_blank');
@@ -67,14 +81,20 @@ const ExternalProjectCard = ({
             <div className="w-full">
               <div className="px-4">
                 <div className="text-center w-full">
-                  <h2 className="font-medium text-center opacity-60 mb-2">{item.title}</h2>
+                  <h2 className="font-medium text-center opacity-60 mb-2">
+                    {item.title}
+                  </h2>
                   {item.imageUrl && (
                     <div className="avatar opacity-90">
                       <div className="w-24 h-24 mask mask-squircle">
                         <LazyImage
                           src={item.imageUrl}
                           alt="thumbnail"
-                          placeholder={skeleton({ widthCls: 'w-full', heightCls: 'h-full', shape: '' })}
+                          placeholder={skeleton({
+                            widthCls: 'w-full',
+                            heightCls: 'h-full',
+                            shape: '',
+                          })}
                         />
                       </div>
                     </div>
@@ -104,7 +124,9 @@ const ExternalProjectCard = ({
                     {loading ? (
                       skeleton({ widthCls: 'w-40', heightCls: 'h-8' })
                     ) : (
-                      <span className="text-base-content opacity-70">{header}</span>
+                      <span className="text-base-content opacity-70">
+                        {header}
+                      </span>
                     )}
                   </h5>
                 </div>

@@ -34,7 +34,11 @@ const EducationCard = ({
       <ListItem
         key={i}
         time={skeleton({ widthCls: 'w-5/12', heightCls: 'h-4' })}
-        degree={skeleton({ widthCls: 'w-6/12', heightCls: 'h-4', className: 'my-1.5' })}
+        degree={skeleton({
+          widthCls: 'w-6/12',
+          heightCls: 'h-4',
+          className: 'my-1.5',
+        })}
         institution={skeleton({ widthCls: 'w-6/12', heightCls: 'h-3' })}
       />
     ));

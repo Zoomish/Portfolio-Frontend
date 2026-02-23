@@ -49,7 +49,11 @@ const ExperienceCard = ({
       <ListItem
         key={i}
         time={skeleton({ widthCls: 'w-5/12', heightCls: 'h-4' })}
-        position={skeleton({ widthCls: 'w-6/12', heightCls: 'h-4', className: 'my-1.5' })}
+        position={skeleton({
+          widthCls: 'w-6/12',
+          heightCls: 'h-4',
+          className: 'my-1.5',
+        })}
         company={skeleton({ widthCls: 'w-6/12', heightCls: 'h-3' })}
       />
     ));

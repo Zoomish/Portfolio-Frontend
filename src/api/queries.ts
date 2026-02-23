@@ -15,7 +15,8 @@ export function useGithubRepos() {
   return useQuery({
     queryKey: queryKeys.githubRepos,
     queryFn: async () => {
-      const { data } = await apiClient.get<GithubReposResponse>('/github/repos');
+      const { data } =
+        await apiClient.get<GithubReposResponse>('/github/repos');
       return data;
     },
     staleTime: 1000 * 60 * 10, // 10 min
@@ -28,7 +29,8 @@ export function useLinkedinAll() {
   return useQuery({
     queryKey: queryKeys.linkedinAll,
     queryFn: async () => {
-      const { data } = await apiClient.get<LinkedInAllResponse>('/linkedin/all');
+      const { data } =
+        await apiClient.get<LinkedInAllResponse>('/linkedin/all');
       return data;
     },
     staleTime: 1000 * 60 * 10,

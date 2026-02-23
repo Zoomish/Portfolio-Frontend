@@ -31,7 +31,11 @@ const ThemeChanger = ({
         <div className="flex-1">
           <h5 className="card-title">
             {loading ? (
-              skeleton({ widthCls: 'w-20', heightCls: 'h-8', className: 'mb-1' })
+              skeleton({
+                widthCls: 'w-20',
+                heightCls: 'h-8',
+                className: 'mb-1',
+              })
             ) : (
               <span className="text-base-content opacity-70">Theme</span>
             )}
@@ -46,7 +50,11 @@ const ThemeChanger = ({
         </div>
         <div className="flex-0">
           {loading ? (
-            skeleton({ widthCls: 'w-14 md:w-28', heightCls: 'h-10', className: 'mr-6' })
+            skeleton({
+              widthCls: 'w-14 md:w-28',
+              heightCls: 'h-10',
+              className: 'mr-6',
+            })
           ) : (
             <div title="Change Theme" className="dropdown dropdown-end">
               <div

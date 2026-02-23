@@ -13,9 +13,11 @@ const AboutCard: React.FC<Props> = ({ about, loading }) => {
       <div className="card-body">
         <div className="mx-3 mb-2">
           <h5 className="card-title">
-            {loading
-              ? skeleton({ widthCls: 'w-24', heightCls: 'h-8' })
-              : <span className="text-base-content opacity-70">About Me</span>}
+            {loading ? (
+              skeleton({ widthCls: 'w-24', heightCls: 'h-8' })
+            ) : (
+              <span className="text-base-content opacity-70">About Me</span>
+            )}
           </h5>
         </div>
         <div className="mx-3 text-sm text-base-content opacity-60 leading-relaxed">

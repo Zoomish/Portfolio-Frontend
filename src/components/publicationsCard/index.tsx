@@ -39,7 +39,10 @@ const PostCard: React.FC<{ post: LinkedInPost }> = ({ post }) => {
               {formatDistance(postedDate, new Date(), { addSuffix: true })}
             </p>
           </div>
-          <FaLinkedin className="ml-auto text-blue-500 opacity-60 shrink-0" size={18} />
+          <FaLinkedin
+            className="ml-auto text-blue-500 opacity-60 shrink-0"
+            size={18}
+          />
         </div>
 
         <p className="text-sm text-base-content opacity-60 leading-relaxed whitespace-pre-wrap">
@@ -83,7 +86,11 @@ const PublicationsCard: React.FC<Props> = ({ posts, loading }) => {
               Array.from({ length: 3 }).map((_, i) => (
                 <div key={i} className="card shadow compact bg-base-100 p-6">
                   <div className="flex items-center gap-3 mb-3">
-                    {skeleton({ widthCls: 'w-10', heightCls: 'h-10', shape: 'rounded-full' })}
+                    {skeleton({
+                      widthCls: 'w-10',
+                      heightCls: 'h-10',
+                      shape: 'rounded-full',
+                    })}
                     <div className="space-y-1 flex-1">
                       {skeleton({ widthCls: 'w-32', heightCls: 'h-4' })}
                       {skeleton({ widthCls: 'w-20', heightCls: 'h-3' })}
@@ -97,9 +104,7 @@ const PublicationsCard: React.FC<Props> = ({ posts, loading }) => {
                 </div>
               ))
             ) : posts.length > 0 ? (
-              posts.map((post) => (
-                <PostCard key={post.full_urn} post={post} />
-              ))
+              posts.map((post) => <PostCard key={post.full_urn} post={post} />)
             ) : (
               <div className="text-center mb-6">
                 <AiOutlineContainer className="mx-auto h-12 w-12 opacity-30" />

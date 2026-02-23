@@ -1,4 +1,9 @@
-import { FaStar, FaCodeBranch, FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import {
+  FaStar,
+  FaCodeBranch,
+  FaGithub,
+  FaExternalLinkAlt,
+} from 'react-icons/fa';
 import { skeleton } from '../../utils';
 import type { FilteredRepo } from '../../types';
 
@@ -53,7 +58,9 @@ const RepoCard: React.FC<{ repo: FilteredRepo }> = ({ repo }) => (
 
       <div className="flex items-center gap-3 mt-auto flex-wrap">
         {repo.language && (
-          <span className={`text-xs font-mono ${languageColors[repo.language] || 'text-base-content opacity-60'}`}>
+          <span
+            className={`text-xs font-mono ${languageColors[repo.language] || 'text-base-content opacity-60'}`}
+          >
             ● {repo.language}
           </span>
         )}
@@ -81,7 +88,9 @@ const GithubCard: React.FC<Props> = ({ repos, loading }) => {
         <div className="card-body">
           <div className="mx-3 mb-2">
             <h5 className="card-title">
-              <span className="text-base-content opacity-70">Github Projects</span>
+              <span className="text-base-content opacity-70">
+                Github Projects
+              </span>
             </h5>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

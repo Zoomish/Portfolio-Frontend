@@ -1,12 +1,6 @@
 import { Fragment } from 'react';
-import {
-  AiFillGithub,
-} from 'react-icons/ai';
-import {
-  FaGlobe,
-  FaLinkedin,
-  FaTelegram,
-} from 'react-icons/fa';
+import { AiFillGithub } from 'react-icons/ai';
+import { FaGlobe, FaLinkedin, FaTelegram } from 'react-icons/fa';
 import { MdLocationOn } from 'react-icons/md';
 import { RiMailFill } from 'react-icons/ri';
 import type { LinkedInBasicInfo, LinkedInContactResponse } from '../../types';
@@ -66,10 +60,7 @@ const DetailsCard = ({
     ));
 
   // Derive contact values from LinkedIn contact API
-  const email =
-    contact?.email ||
-    fallbackEmail ||
-    null;
+  const email = contact?.email || fallbackEmail || null;
 
   const portfolioSite = contact?.websites?.find(
     (w) => w.category === 'PORTFOLIO',
