@@ -65,7 +65,7 @@ const AvatarCard: React.FC<AvatarCardProps> = ({
           {!loading && profile?.open_to_work && (
             <div className="mt-2">
               <span className="badge badge-success badge-sm text-xs opacity-80">
-                Open to Work
+                #Open to Work
               </span>
             </div>
           )}
