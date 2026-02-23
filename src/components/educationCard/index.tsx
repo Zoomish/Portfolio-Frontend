@@ -1,5 +1,5 @@
-import React from 'react';
-import { SanitizedEducation } from '../../interfaces/sanitizedConfig';
+import React, { Fragment } from 'react';
+import type { LinkedInEducation } from '../../types';
 import { skeleton } from '../../utils';
 
 const ListItem = ({
@@ -15,8 +15,8 @@ const ListItem = ({
     <div
       className="absolute w-2 h-2 bg-base-300 rounded-full border border-base-300 mt-1.5"
       style={{ left: '-4.5px' }}
-    ></div>
-    <div className="my-0.5 text-xs">{time}</div>
+    />
+    <div className="my-0.5 text-xs opacity-60">{time}</div>
     <h3 className="font-semibold">{degree}</h3>
     <div className="mb-4 font-normal">{institution}</div>
   </li>
@@ -27,30 +27,17 @@ const EducationCard = ({
   educations,
 }: {
   loading: boolean;
-  educations: SanitizedEducation[];
+  educations: LinkedInEducation[];
 }) => {
-  const renderSkeleton = () => {
-    const array = [];
-    for (let index = 0; index < 2; index++) {
-      array.push(
-        <ListItem
-          key={index}
-          time={skeleton({
-            widthCls: 'w-5/12',
-            heightCls: 'h-4',
-          })}
-          degree={skeleton({
-            widthCls: 'w-6/12',
-            heightCls: 'h-4',
-            className: 'my-1.5',
-          })}
-          institution={skeleton({ widthCls: 'w-6/12', heightCls: 'h-3' })}
-        />,
-      );
-    }
-
-    return array;
-  };
+  const renderSkeleton = () =>
+    Array.from({ length: 2 }).map((_, i) => (
+      <ListItem
+        key={i}
+        time={skeleton({ widthCls: 'w-5/12', heightCls: 'h-4' })}
+        degree={skeleton({ widthCls: 'w-6/12', heightCls: 'h-4', className: 'my-1.5' })}
+        institution={skeleton({ widthCls: 'w-6/12', heightCls: 'h-3' })}
+      />
+    ));
 
   return (
     <div className="card shadow-lg compact bg-base-100">
@@ -69,16 +56,16 @@ const EducationCard = ({
             {loading ? (
               renderSkeleton()
             ) : (
-              <>
+              <Fragment>
                 {educations.map((item, index) => (
                   <ListItem
                     key={index}
-                    time={`${item.from} - ${item.to}`}
+                    time={item.duration}
                     degree={item.degree}
-                    institution={item.institution}
+                    institution={item.school}
                   />
                 ))}
-              </>
+              </Fragment>
             )}
           </ol>
         </div>
