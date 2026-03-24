@@ -9,10 +9,22 @@ interface Props {
   loading: boolean;
 }
 
+function getPostImageUrls(post: LinkedInPost): string[] {
+  const { media } = post;
+  if (!media || media.type !== 'image') return [];
+  const fromImages = media.images?.map((img) => img.url).filter(Boolean) ?? [];
+  if (fromImages.length > 0) return fromImages;
+  return media.url ? [media.url] : [];
+}
+
 const PostCard: React.FC<{ post: LinkedInPost }> = ({ post }) => {
   const truncated =
-    post.text?.length > 280 ? post.text.slice(0, 280) + '…' : post.text;
+    post.text && post.text.length > 280
+      ? post.text.slice(0, 280) + '…'
+      : post.text;
   const postedDate = new Date(post.posted_at.date);
+  const imageUrls = getPostImageUrls(post);
+  const hasText = Boolean(post.text?.trim());
 
   return (
     <a
@@ -45,9 +57,30 @@ const PostCard: React.FC<{ post: LinkedInPost }> = ({ post }) => {
           />
         </div>
 
-        <p className="text-sm text-base-content opacity-60 leading-relaxed whitespace-pre-wrap">
-          {truncated}
-        </p>
+        {hasText ? (
+          <p className="text-sm text-base-content opacity-60 leading-relaxed whitespace-pre-wrap">
+            {truncated}
+          </p>
+        ) : null}
+
+        {imageUrls.length > 0 ? (
+          <div
+            className={`grid gap-2 ${imageUrls.length > 1 ? 'grid-cols-2' : 'grid-cols-1'} ${hasText ? 'mt-3' : ''}`}
+          >
+            {imageUrls.map((src, idx) => (
+              <img
+                key={`${post.full_urn}-img-${idx}`}
+                src={src}
+                alt={`Publication image — ${post.author.first_name} ${post.author.last_name}`}
+                loading="lazy"
+                className="w-full max-h-80 rounded-lg object-cover bg-base-200"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).style.display = 'none';
+                }}
+              />
+            ))}
+          </div>
+        ) : null}
 
         <div className="flex items-center gap-4 mt-4 text-xs text-base-content opacity-40">
           <span className="flex items-center gap-1">

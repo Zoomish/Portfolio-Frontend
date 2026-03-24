@@ -17,6 +17,18 @@ export interface GithubReposResponse {
 
 // ─── LinkedIn Posts ───────────────────────────────────────────────────────────
 
+export interface LinkedInPostMediaImage {
+  url: string;
+  width?: number;
+  height?: number;
+}
+
+export interface LinkedInPostMedia {
+  type: string;
+  url?: string;
+  images?: LinkedInPostMediaImage[];
+}
+
 export interface LinkedInPost {
   urn: {
     activity_urn: string;
@@ -29,9 +41,10 @@ export interface LinkedInPost {
     relative: string;
     timestamp: number;
   };
-  text: string;
+  text?: string;
   url: string;
   post_type: string;
+  media?: LinkedInPostMedia;
   author: {
     first_name: string;
     last_name: string;
