@@ -16,6 +16,13 @@ import SkillCard from './components/skillCard';
 import { APP_CONFIG } from './config/app.config';
 import { BG_COLOR, LOCAL_STORAGE_KEY_NAME } from './constants';
 import { DEFAULT_THEMES } from './constants/defaultThemes';
+import type {
+  FilteredRepo,
+  LinkedInEducation,
+  LinkedInExperience,
+  LinkedInPost,
+} from './types';
+import { asArray } from './utils';
 
 const getInitialTheme = (): string => {
   const { themeConfig } = APP_CONFIG;
@@ -44,12 +51,18 @@ function App() {
   const loading = linkedinLoading;
 
   const profile = linkedinData?.details?.data?.data?.basic_info ?? null;
-  const experience = linkedinData?.details?.data?.data?.experience ?? [];
-  const education = linkedinData?.details?.data?.data?.education ?? [];
+  const experience = asArray<LinkedInExperience>(
+    linkedinData?.details?.data?.data?.experience,
+  );
+  const education = asArray<LinkedInEducation>(
+    linkedinData?.details?.data?.data?.education,
+  );
   const contactData = linkedinData?.contact?.data?.data ?? null;
-  const posts = linkedinData?.posts?.data?.data?.posts ?? [];
-  const repos = githubData?.data ?? [];
-  const skills = profile?.top_skills ?? [];
+  const posts = asArray<LinkedInPost>(
+    linkedinData?.posts?.data?.data?.posts,
+  );
+  const repos = asArray<FilteredRepo>(githubData?.data);
+  const skills = asArray<string>(profile?.top_skills);
 
   useEffect(() => {
     setTheme(getInitialTheme());

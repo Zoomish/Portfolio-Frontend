@@ -80,7 +80,8 @@ const RepoCard: React.FC<{ repo: FilteredRepo }> = ({ repo }) => (
 );
 
 const GithubCard: React.FC<Props> = ({ repos, loading }) => {
-  const sortedRepos = [...repos].sort((a, b) => b.stars - a.stars);
+  const safeRepos = Array.isArray(repos) ? repos : [];
+  const sortedRepos = [...safeRepos].sort((a, b) => b.stars - a.stars);
 
   return (
     <div className="col-span-1 lg:col-span-2">

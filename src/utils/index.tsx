@@ -1,5 +1,10 @@
 import colors from '../data/colors.json';
 
+/** Coerce API fields that should be arrays (avoids crashes when the backend sends null, an object, or omits the key). */
+export function asArray<T>(value: unknown): T[] {
+  return Array.isArray(value) ? (value as T[]) : [];
+}
+
 export const isDarkishTheme = (appliedTheme: string): boolean =>
   ['dark', 'halloween', 'forest', 'black', 'luxury', 'dracula'].includes(
     appliedTheme,
