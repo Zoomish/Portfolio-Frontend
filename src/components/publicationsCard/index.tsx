@@ -73,7 +73,7 @@ const PostCard: React.FC<{ post: LinkedInPost }> = ({ post }) => {
                 src={src}
                 alt={`Publication image — ${post.author.first_name} ${post.author.last_name}`}
                 loading="lazy"
-                className="w-full max-h-80 rounded-lg object-cover bg-base-200"
+                className="w-full max-h-80 rounded-lg object-contain bg-base-200"
                 onError={(e) => {
                   (e.target as HTMLImageElement).style.display = 'none';
                 }}
