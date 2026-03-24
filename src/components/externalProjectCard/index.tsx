@@ -14,10 +14,10 @@ const ExternalProjectCard = ({
   loading: boolean;
   googleAnalyticId?: string;
 }) => {
-  if (!loading && externalProjects.length === 0) return null;
+  if (!loading && externalProjects?.length === 0) return null;
 
   const renderSkeleton = () =>
-    Array.from({ length: externalProjects.length || 2 }).map((_, i) => (
+    Array.from({ length: externalProjects?.length || 2 }).map((_, i) => (
       <div className="card shadow-lg compact bg-base-100" key={i}>
         <div className="p-8 h-full w-full">
           <div className="flex items-center flex-col">

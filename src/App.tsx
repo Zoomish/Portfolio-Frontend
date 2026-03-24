@@ -2,9 +2,6 @@ import { useEffect, useState } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { hotjar } from 'react-hotjar';
 import { useGithubRepos, useLinkedinAll } from './api/queries';
-import { APP_CONFIG } from './config/app.config';
-import { BG_COLOR, LOCAL_STORAGE_KEY_NAME } from './constants';
-import { DEFAULT_THEMES } from './constants/defaultThemes';
 import AboutCard from './components/aboutCard';
 import AvatarCard from './components/avatarCard';
 import DetailsCard from './components/detailsCard';
@@ -16,6 +13,9 @@ import GithubCard from './components/githubCard';
 import HeadTagEditor from './components/headTagEditor';
 import PublicationsCard from './components/publicationsCard';
 import SkillCard from './components/skillCard';
+import { APP_CONFIG } from './config/app.config';
+import { BG_COLOR, LOCAL_STORAGE_KEY_NAME } from './constants';
+import { DEFAULT_THEMES } from './constants/defaultThemes';
 
 const getInitialTheme = (): string => {
   const { themeConfig } = APP_CONFIG;
@@ -101,13 +101,13 @@ function App() {
                   githubUsername={APP_CONFIG.github.username}
                   fallbackEmail={APP_CONFIG.social.email}
                 />
-                {(loading || skills.length > 0) && (
+                {(loading || skills?.length > 0) && (
                   <SkillCard loading={loading} skills={skills} />
                 )}
-                {(loading || experience.length > 0) && (
+                {(loading || experience?.length > 0) && (
                   <ExperienceCard loading={loading} experiences={experience} />
                 )}
-                {(loading || education.length > 0) && (
+                {(loading || education?.length > 0) && (
                   <EducationCard loading={loading} educations={education} />
                 )}
               </div>
@@ -118,10 +118,10 @@ function App() {
               <div className="grid grid-cols-1 gap-6">
                 <GithubCard repos={repos} loading={githubLoading} />
                 <AboutCard about={profile?.about ?? null} loading={loading} />
-                {posts.length > 0 || linkedinLoading ? (
+                {posts?.length > 0 || linkedinLoading ? (
                   <PublicationsCard posts={posts} loading={linkedinLoading} />
                 ) : null}
-                {externalProjects.projects.length > 0 && (
+                {externalProjects.projects?.length > 0 && (
                   <ExternalProjectCard
                     loading={false}
                     header={externalProjects.header}

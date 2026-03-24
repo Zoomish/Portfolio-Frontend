@@ -1,8 +1,8 @@
 import { formatDistance } from 'date-fns';
 import { AiOutlineContainer } from 'react-icons/ai';
-import { FaHeart, FaComment, FaShare, FaLinkedin } from 'react-icons/fa';
-import { skeleton } from '../../utils';
+import { FaComment, FaHeart, FaLinkedin, FaShare } from 'react-icons/fa';
 import type { LinkedInPost } from '../../types';
+import { skeleton } from '../../utils';
 
 interface Props {
   posts: LinkedInPost[];
@@ -11,7 +11,7 @@ interface Props {
 
 const PostCard: React.FC<{ post: LinkedInPost }> = ({ post }) => {
   const truncated =
-    post.text.length > 280 ? post.text.slice(0, 280) + '…' : post.text;
+    post.text?.length > 280 ? post.text.slice(0, 280) + '…' : post.text;
   const postedDate = new Date(post.posted_at.date);
 
   return (
@@ -72,7 +72,7 @@ const PublicationsCard: React.FC<Props> = ({ posts, loading }) => {
     <div className="col-span-1 lg:col-span-2">
       <div
         className={`card compact bg-base-100 ${
-          loading || posts.length ? 'shadow bg-opacity-40' : 'shadow-lg'
+          loading || posts?.length ? 'shadow bg-opacity-40' : 'shadow-lg'
         }`}
       >
         <div className="card-body">
@@ -103,7 +103,7 @@ const PublicationsCard: React.FC<Props> = ({ posts, loading }) => {
                   </div>
                 </div>
               ))
-            ) : posts.length > 0 ? (
+            ) : posts?.length > 0 ? (
               posts.map((post) => <PostCard key={post.full_urn} post={post} />)
             ) : (
               <div className="text-center mb-6">
