@@ -1,6 +1,13 @@
-import { useEffect, useState } from 'react';
-import { HelmetProvider } from 'react-helmet-async';
-import { hotjar } from 'react-hotjar';
+import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+import {
+  ActivityIndicator,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useGithubRepos, useLinkedinAll } from './api/queries';
 import AboutCard from './components/aboutCard';
 import AvatarCard from './components/avatarCard';
@@ -10,12 +17,10 @@ import ExperienceCard from './components/experienceCard';
 import ExternalProjectCard from './components/externalProjectCard';
 import Footer from './components/footer';
 import GithubCard from './components/githubCard';
-import HeadTagEditor from './components/headTagEditor';
 import PublicationsCard from './components/publicationsCard';
 import SkillCard from './components/skillCard';
 import { APP_CONFIG } from './config/app.config';
-import { BG_COLOR, LOCAL_STORAGE_KEY_NAME } from './constants';
-import { DEFAULT_THEMES } from './constants/defaultThemes';
+import { colors, fontSize, radius, spacing } from './theme';
 import type {
   FilteredRepo,
   LinkedInEducation,
@@ -24,32 +29,20 @@ import type {
 } from './types';
 import { asArray } from './utils';
 
-const getInitialTheme = (): string => {
-  const { themeConfig } = APP_CONFIG;
+export default function App() {
+  const {
+    data: githubData,
+    isLoading: githubLoading,
+    isError: githubError,
+  } = useGithubRepos();
+  const {
+    data: linkedinData,
+    isLoading: linkedinLoading,
+    isFetching: linkedinFetching,
+    isError: linkedinError,
+  } = useLinkedinAll();
 
-  if (themeConfig.respectPrefersColorScheme && !themeConfig.disableSwitch) {
-    const prefersDark = window.matchMedia(
-      '(prefers-color-scheme: dark)',
-    ).matches;
-    return prefersDark ? 'dark' : 'light';
-  }
-
-  if (!themeConfig.disableSwitch) {
-    const saved = localStorage.getItem(LOCAL_STORAGE_KEY_NAME);
-    if (saved && themeConfig.themes.includes(saved)) return saved;
-  }
-
-  return themeConfig.defaultTheme;
-};
-
-function App() {
-  const [theme, setTheme] = useState<string>(DEFAULT_THEMES[0]);
-
-  const { data: githubData, isLoading: githubLoading } = useGithubRepos();
-  const { data: linkedinData, isLoading: linkedinLoading } = useLinkedinAll();
-
-  const loading = linkedinLoading;
-
+  const profileLoading = linkedinLoading || (linkedinFetching && !linkedinError);
   const profile = linkedinData?.details?.data?.data?.basic_info ?? null;
   const experience = asArray<LinkedInExperience>(
     linkedinData?.details?.data?.data?.experience,
@@ -64,101 +57,124 @@ function App() {
   const repos = asArray<FilteredRepo>(githubData?.data);
   const skills = asArray<string>(profile?.top_skills);
 
-  useEffect(() => {
-    setTheme(getInitialTheme());
-
-    const hotjarId = import.meta.env.VITE_HOTJAR_ID;
-    const hotjarVersion = Number(import.meta.env.VITE_HOTJAR_VERSION) || 6;
-    if (hotjarId) {
-      hotjar.initialize({ id: Number(hotjarId), sv: hotjarVersion });
-    }
-  }, []);
-
-  useEffect(() => {
-    if (theme) document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
-
-  const googleAnalyticsId = import.meta.env.VITE_GA_ID;
-  const { externalProjects, themeConfig, footer } = APP_CONFIG;
+  const { externalProjects, footer } = APP_CONFIG;
+  const showInitialLoader = profileLoading && !profile && !linkedinError;
 
   return (
-    <HelmetProvider>
-      <div className="fade-in h-screen">
-        <HeadTagEditor
-          googleAnalyticsId={googleAnalyticsId}
-          appliedTheme={theme}
-        />
-        <div className={`p-4 lg:p-10 min-h-full ${BG_COLOR}`}>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 rounded-box">
-            {/* ── Left sidebar ───────────────────────────────────── */}
-            <div className="col-span-1">
-              <div className="grid grid-cols-1 gap-6">
-                {/* {!themeConfig.disableSwitch && (
-                  <ThemeChanger
-                    theme={theme}
-                    setTheme={setTheme}
-                    loading={loading}
-                    themeConfig={themeConfig}
-                  />
-                )} */}
-                <AvatarCard
-                  profile={profile}
-                  loading={loading}
-                  avatarRing={themeConfig.displayAvatarRing}
-                  resumeFileUrl={APP_CONFIG.resume.fileUrl}
-                />
-                <DetailsCard
-                  profile={profile}
-                  contact={contactData}
-                  loading={loading}
-                  githubUsername={APP_CONFIG.github.username}
-                  fallbackEmail={APP_CONFIG.social.email}
-                />
-                {(loading || skills?.length > 0) && (
-                  <SkillCard loading={loading} skills={skills} />
-                )}
-                {(loading || experience?.length > 0) && (
-                  <ExperienceCard loading={loading} experiences={experience} />
-                )}
-                {(loading || education?.length > 0) && (
-                  <EducationCard loading={loading} educations={education} />
-                )}
-              </div>
-            </div>
+    <SafeAreaProvider>
+      <SafeAreaView style={styles.safeArea} edges={['top']}>
+        <StatusBar style="light" />
 
-            {/* ── Main content ───────────────────────────────────── */}
-            <div className="lg:col-span-2 col-span-1">
-              <div className="grid grid-cols-1 gap-6">
-                <GithubCard repos={repos} loading={githubLoading} />
-                <AboutCard about={profile?.about ?? null} loading={loading} />
-                {posts?.length > 0 || linkedinLoading ? (
-                  <PublicationsCard posts={posts} loading={linkedinLoading} />
-                ) : null}
-                {externalProjects.projects?.length > 0 && (
-                  <ExternalProjectCard
-                    loading={false}
-                    header={externalProjects.header}
-                    externalProjects={externalProjects.projects}
-                    googleAnalyticId={googleAnalyticsId}
-                  />
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {footer && (
-          <footer
-            className={`p-4 footer ${BG_COLOR} text-base-content footer-center`}
-          >
-            <div className="card compact bg-base-100 shadow">
-              <Footer content={footer} loading={loading} />
-            </div>
-          </footer>
+        {showInitialLoader && (
+          <View style={styles.loaderBar}>
+            <ActivityIndicator color={colors.accent} />
+            <Text style={styles.loaderText}>Загрузка профиля...</Text>
+          </View>
         )}
-      </div>
-    </HelmetProvider>
+
+        {(linkedinError || githubError) && (
+          <View style={styles.errorBar}>
+            <Text style={styles.errorText}>
+              Не удалось загрузить часть данных. Проверь интернет и потяни экран
+              вниз для обновления.
+            </Text>
+          </View>
+        )}
+
+        <ScrollView
+          style={styles.scrollView}
+          contentContainerStyle={styles.content}
+          showsVerticalScrollIndicator={false}
+        >
+          <AvatarCard
+            profile={profile}
+            loading={profileLoading}
+            resumeFileUrl={APP_CONFIG.resume.fileUrl || undefined}
+          />
+
+          <DetailsCard
+            profile={profile}
+            contact={contactData}
+            loading={profileLoading}
+            githubUsername={APP_CONFIG.github.username}
+            fallbackEmail={APP_CONFIG.social.email}
+          />
+
+          {(profileLoading || skills.length > 0) && (
+            <SkillCard loading={profileLoading} skills={skills} />
+          )}
+
+          {(profileLoading || experience.length > 0) && (
+            <ExperienceCard loading={profileLoading} experiences={experience} />
+          )}
+
+          {(profileLoading || education.length > 0) && (
+            <EducationCard loading={profileLoading} educations={education} />
+          )}
+
+          <GithubCard repos={repos} loading={githubLoading} />
+
+          <AboutCard about={profile?.about ?? null} loading={profileLoading} />
+
+          {(posts.length > 0 || linkedinLoading) && (
+            <PublicationsCard posts={posts} loading={linkedinLoading} />
+          )}
+
+          {externalProjects.projects.length > 0 && (
+            <ExternalProjectCard
+              loading={false}
+              header={externalProjects.header}
+              externalProjects={[...externalProjects.projects]}
+            />
+          )}
+
+          {footer && <Footer content={footer} loading={profileLoading} />}
+
+          <View style={{ height: spacing.xxl }} />
+        </ScrollView>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
-export default App;
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: colors.background,
+  },
+  loaderBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: spacing.sm,
+    paddingVertical: spacing.sm,
+    backgroundColor: colors.cardBg,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border,
+  },
+  loaderText: {
+    fontSize: fontSize.sm,
+    color: colors.textSecondary,
+  },
+  errorBar: {
+    marginHorizontal: spacing.lg,
+    marginTop: spacing.sm,
+    padding: spacing.md,
+    backgroundColor: colors.errorBg,
+    borderRadius: radius.md,
+    borderWidth: 1,
+    borderColor: colors.errorBorder,
+  },
+  errorText: {
+    fontSize: fontSize.sm,
+    color: colors.errorText,
+    textAlign: 'center',
+  },
+  scrollView: {
+    flex: 1,
+  },
+  content: {
+    padding: spacing.lg,
+    gap: spacing.lg,
+  },
+});

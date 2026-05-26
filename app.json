@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "Portfolio",
+    "slug": "portfolio-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "splash": {
+      "backgroundColor": "#1a1820"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.zoomish.portfolio"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#1a1820"
+      },
+      "package": "com.zoomish.portfolio"
+    },
+    "plugins": [
+      "expo-font"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "dab41a7b-a977-4828-b993-a3372a9f717a"
+      }
+    }
+  }
+}

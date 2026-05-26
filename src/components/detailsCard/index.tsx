@@ -1,10 +1,9 @@
-import { Fragment } from 'react';
-import { AiFillGithub } from 'react-icons/ai';
-import { FaGlobe, FaLinkedin, FaTelegram } from 'react-icons/fa';
-import { MdLocationOn } from 'react-icons/md';
-import { RiMailFill } from 'react-icons/ri';
+import { Ionicons } from '@expo/vector-icons';
+import React, { Fragment } from 'react';
+import { Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { colors, fontSize, radius, spacing } from '../../theme';
 import type { LinkedInBasicInfo, LinkedInContactResponse } from '../../types';
-import { skeleton } from '../../utils';
+import { Skeleton } from '../../utils';
 
 type Props = {
   profile: LinkedInBasicInfo | null;
@@ -16,50 +15,34 @@ type Props = {
 
 const ListItem: React.FC<{
   icon: React.ReactNode;
-  title: React.ReactNode;
-  value: React.ReactNode;
+  title: string;
+  value: string;
   link?: string;
-  skeleton?: boolean;
-}> = ({ icon, title, value, link, skeleton: isSkeleton = false }) => (
-  <div className="flex justify-start py-2 px-1 items-center">
-    <div className="flex-grow font-medium gap-2 flex items-center my-1">
-      {icon} {title}
-    </div>
-    <div
-      className={`${isSkeleton ? 'flex-grow' : ''} text-sm font-normal text-right mr-2 ml-3 ${link ? 'truncate' : ''}`}
-      style={{ wordBreak: 'break-word' }}
-    >
-      <a
-        href={link}
-        target="_blank"
-        rel="noreferrer"
-        className="flex justify-start py-2 px-1 items-center"
-      >
-        {value}
-      </a>
-    </div>
-  </div>
-);
+}> = ({ icon, title, value, link }) => {
+  const handlePress = () => {
+    if (link) Linking.openURL(link);
+  };
 
-const DetailsCard = ({
+  return (
+    <TouchableOpacity style={styles.listItem} onPress={handlePress} disabled={!link}>
+      <View style={styles.listItemLeft}>
+        {icon}
+        <Text style={styles.listItemTitle}>{title}</Text>
+      </View>
+      <Text style={[styles.listItemValue, link && styles.listItemLink]} numberOfLines={1}>
+        {value}
+      </Text>
+    </TouchableOpacity>
+  );
+};
+
+const DetailsCard: React.FC<Props> = ({
   profile,
   contact,
   loading,
   githubUsername,
   fallbackEmail,
-}: Props) => {
-  const renderSkeleton = () =>
-    Array.from({ length: 4 }).map((_, i) => (
-      <ListItem
-        key={i}
-        skeleton
-        icon={skeleton({ widthCls: 'w-4', heightCls: 'h-4' })}
-        title={skeleton({ widthCls: 'w-24', heightCls: 'h-4' })}
-        value={skeleton({ widthCls: 'w-full', heightCls: 'h-4' })}
-      />
-    ));
-
-  // Derive contact values from LinkedIn contact API
+}) => {
   const email = contact?.email || fallbackEmail || null;
 
   const portfolioSite = contact?.websites?.find(
@@ -74,67 +57,114 @@ const DetailsCard = ({
     ? telegramUrl.replace('https://t.me/', '@')
     : null;
 
+  const renderSkeleton = () =>
+    Array.from({ length: 4 }).map((_, i) => (
+      <View key={i} style={styles.skeletonRow}>
+        <Skeleton width={20} height={20} borderRadius={4} />
+        <Skeleton width={80} height={16} style={{ marginLeft: spacing.sm }} />
+        <View style={{ flex: 1 }} />
+        <Skeleton width={100} height={16} />
+      </View>
+    ));
+
   return (
-    <div className="card shadow-lg compact bg-base-100">
-      <div className="card-body">
-        <div className="text-base-content text-opacity-60">
-          {loading || !profile ? (
-            renderSkeleton()
-          ) : (
-            <Fragment>
-              {profile.location?.full && (
-                <ListItem
-                  icon={<MdLocationOn />}
-                  title="Based in:"
-                  value={profile.location.full}
-                />
-              )}
-              <ListItem
-                icon={<AiFillGithub />}
-                title="GitHub:"
-                value={githubUsername}
-                link={`https://github.com/${githubUsername}`}
-              />
-              {profile.profile_url && (
-                <ListItem
-                  icon={<FaLinkedin />}
-                  title="LinkedIn:"
-                  value={profile.public_identifier}
-                  link={profile.profile_url}
-                />
-              )}
-              {telegramHandle && (
-                <ListItem
-                  icon={<FaTelegram />}
-                  title="Telegram:"
-                  value={telegramHandle}
-                  link={telegramUrl}
-                />
-              )}
-              {portfolioSite && (
-                <ListItem
-                  icon={<FaGlobe />}
-                  title="Website:"
-                  value={portfolioSite
-                    .replace('https://', '')
-                    .replace('http://', '')}
-                  link={portfolioSite}
-                />
-              )}
-              {email && (
-                <ListItem
-                  icon={<RiMailFill />}
-                  title="Email:"
-                  value={email}
-                  link={`mailto:${email}`}
-                />
-              )}
-            </Fragment>
+    <View style={styles.card}>
+      {loading || !profile ? (
+        renderSkeleton()
+      ) : (
+        <Fragment>
+          {profile.location?.full && (
+            <ListItem
+              icon={<Ionicons name="location-outline" size={18} color={colors.textSecondary} />}
+              title="Based in:"
+              value={profile.location.full}
+            />
           )}
-        </div>
-      </div>
-    </div>
+          <ListItem
+            icon={<Ionicons name="logo-github" size={18} color={colors.textSecondary} />}
+            title="GitHub:"
+            value={githubUsername}
+            link={`https://github.com/${githubUsername}`}
+          />
+          {profile.profile_url && (
+            <ListItem
+              icon={<Ionicons name="logo-linkedin" size={18} color={colors.textSecondary} />}
+              title="LinkedIn:"
+              value={profile.public_identifier}
+              link={profile.profile_url}
+            />
+          )}
+          {telegramHandle && telegramUrl && (
+            <ListItem
+              icon={<Ionicons name="paper-plane-outline" size={18} color={colors.textSecondary} />}
+              title="Telegram:"
+              value={telegramHandle}
+              link={telegramUrl}
+            />
+          )}
+          {portfolioSite && (
+            <ListItem
+              icon={<Ionicons name="globe-outline" size={18} color={colors.textSecondary} />}
+              title="Website:"
+              value={portfolioSite.replace('https://', '').replace('http://', '')}
+              link={portfolioSite}
+            />
+          )}
+          {email && (
+            <ListItem
+              icon={<Ionicons name="mail" size={18} color={colors.textSecondary} />}
+              title="Email:"
+              value={email}
+              link={`mailto:${email}`}
+            />
+          )}
+        </Fragment>
+      )}
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  card: {
+    backgroundColor: colors.cardBg,
+    borderRadius: radius.lg,
+    padding: spacing.lg,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+  listItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: spacing.sm,
+  },
+  listItemLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
+  },
+  listItemTitle: {
+    fontSize: fontSize.sm,
+    fontWeight: '500',
+    color: colors.textSecondary,
+  },
+  listItemValue: {
+    flex: 1,
+    fontSize: fontSize.sm,
+    color: colors.textSecondary,
+    textAlign: 'right',
+    marginLeft: spacing.md,
+  },
+  listItemLink: {
+    color: colors.accent,
+  },
+  skeletonRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: spacing.sm,
+  },
+});
 
 export default DetailsCard;

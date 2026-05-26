@@ -1,147 +1,105 @@
-import { Fragment } from 'react';
+import React from 'react';
+import { Image, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import type { ExternalProject } from '../../config/app.config';
-import { skeleton } from '../../utils';
-import LazyImage from '../lazyImage';
+import { cardStyles, colors, fontSize, radius, spacing } from '../../theme';
+import { Skeleton } from '../../utils';
 
-const ExternalProjectCard = ({
-  externalProjects,
-  header,
-  loading,
-  googleAnalyticId,
-}: {
+interface Props {
   externalProjects: ExternalProject[];
   header: string;
   loading: boolean;
-  googleAnalyticId?: string;
+}
+
+const ExternalProjectCard: React.FC<Props> = ({
+  externalProjects,
+  header,
+  loading,
 }) => {
   if (!loading && externalProjects?.length === 0) return null;
 
   const renderSkeleton = () =>
-    Array.from({ length: externalProjects?.length || 2 }).map((_, i) => (
-      <div className="card shadow-lg compact bg-base-100" key={i}>
-        <div className="p-8 h-full w-full">
-          <div className="flex items-center flex-col">
-            <div className="w-full">
-              <div className="flex items-start px-4">
-                <div className="w-full">
-                  <h2>
-                    {skeleton({
-                      widthCls: 'w-32',
-                      heightCls: 'h-8',
-                      className: 'mb-2 mx-auto',
-                    })}
-                  </h2>
-                  <div className="avatar w-full h-full">
-                    <div className="w-24 h-24 mask mask-squircle mx-auto">
-                      {skeleton({
-                        widthCls: 'w-full',
-                        heightCls: 'h-full',
-                        shape: '',
-                      })}
-                    </div>
-                  </div>
-                  <div className="mt-2">
-                    {skeleton({
-                      widthCls: 'w-full',
-                      heightCls: 'h-4',
-                      className: 'mx-auto',
-                    })}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    Array.from({ length: 2 }).map((_, i) => (
+      <View key={i} style={styles.projectCard}>
+        <Skeleton width={120} height={20} />
+        <Skeleton width={96} height={96} borderRadius={20} style={{ marginTop: spacing.md, alignSelf: 'center' }} />
+        <Skeleton width={'100%' as unknown as number} height={14} style={{ marginTop: spacing.md }} />
+      </View>
     ));
 
   const renderProjects = () =>
     externalProjects.map((item, index) => (
-      <a
-        className="card shadow-lg compact bg-base-100 cursor-pointer"
+      <TouchableOpacity
         key={index}
-        href={item.link}
-        target="_blank"
-        rel="noreferrer"
-        onClick={(e) => {
-          e.preventDefault();
-          if (googleAnalyticId) {
-            try {
-              // GA event (optional)
-              (window as any).gtag?.('event', 'Click External Project', {
-                post: item.title,
-              });
-            } catch {}
-          }
-          window?.open(item.link, '_blank');
-        }}
+        style={styles.projectCard}
+        onPress={() => Linking.openURL(item.link)}
+        activeOpacity={0.7}
       >
-        <div className="p-8 h-full w-full">
-          <div className="flex items-center flex-col">
-            <div className="w-full">
-              <div className="px-4">
-                <div className="text-center w-full">
-                  <h2 className="font-medium text-center opacity-60 mb-2">
-                    {item.title}
-                  </h2>
-                  {item.imageUrl && (
-                    <div className="avatar opacity-90">
-                      <div className="w-24 h-24 mask mask-squircle">
-                        <LazyImage
-                          src={item.imageUrl}
-                          alt="thumbnail"
-                          placeholder={skeleton({
-                            widthCls: 'w-full',
-                            heightCls: 'h-full',
-                            shape: '',
-                          })}
-                        />
-                      </div>
-                    </div>
-                  )}
-                  {item.description && (
-                    <p className="mt-2 text-base-content text-opacity-60 text-sm text-justify">
-                      {item.description}
-                    </p>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </a>
+        <Text style={styles.projectTitle}>{item.title}</Text>
+        {item.imageUrl && (
+          <Image
+            source={{ uri: item.imageUrl }}
+            style={styles.projectImage}
+            resizeMode="cover"
+          />
+        )}
+        {item.description && (
+          <Text style={styles.projectDescription}>{item.description}</Text>
+        )}
+      </TouchableOpacity>
     ));
 
   return (
-    <Fragment>
-      <div className="col-span-1 lg:col-span-2">
-        <div className="grid grid-cols-2 gap-6">
-          <div className="col-span-2">
-            <div className="card compact bg-base-100 shadow bg-opacity-40">
-              <div className="card-body">
-                <div className="mx-3 flex items-center justify-between mb-2">
-                  <h5 className="card-title">
-                    {loading ? (
-                      skeleton({ widthCls: 'w-40', heightCls: 'h-8' })
-                    ) : (
-                      <span className="text-base-content opacity-70">
-                        {header}
-                      </span>
-                    )}
-                  </h5>
-                </div>
-                <div className="col-span-2">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {loading ? renderSkeleton() : renderProjects()}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </Fragment>
+    <View style={styles.card}>
+      {loading ? (
+        <Skeleton width={140} height={24} />
+      ) : (
+        <Text style={cardStyles.cardTitle}>{header}</Text>
+      )}
+      <View style={styles.projectsGrid}>
+        {loading ? renderSkeleton() : renderProjects()}
+      </View>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  card: {
+    backgroundColor: colors.cardBg,
+    borderRadius: radius.lg,
+    padding: spacing.lg,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+  projectsGrid: {
+    gap: spacing.md,
+  },
+  projectCard: {
+    backgroundColor: colors.surface,
+    borderRadius: radius.md,
+    padding: spacing.lg,
+  },
+  projectTitle: {
+    fontSize: fontSize.md,
+    fontWeight: '500',
+    color: colors.textSecondary,
+    textAlign: 'center',
+  },
+  projectImage: {
+    width: 96,
+    height: 96,
+    borderRadius: 20,
+    alignSelf: 'center',
+    marginTop: spacing.md,
+  },
+  projectDescription: {
+    fontSize: fontSize.sm,
+    color: colors.textSecondary,
+    marginTop: spacing.md,
+    lineHeight: 20,
+  },
+});
 
 export default ExternalProjectCard;

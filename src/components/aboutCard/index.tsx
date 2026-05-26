@@ -1,4 +1,7 @@
-import { skeleton } from '../../utils';
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { cardStyles, colors, fontSize, radius, spacing } from '../../theme';
+import { Skeleton } from '../../utils';
 
 interface Props {
   about: string | null;
@@ -9,31 +12,41 @@ const AboutCard: React.FC<Props> = ({ about, loading }) => {
   if (!loading && !about) return null;
 
   return (
-    <div className="card shadow-lg compact bg-base-100">
-      <div className="card-body">
-        <div className="mx-3 mb-2">
-          <h5 className="card-title">
-            {loading ? (
-              skeleton({ widthCls: 'w-24', heightCls: 'h-8' })
-            ) : (
-              <span className="text-base-content opacity-70">About Me</span>
-            )}
-          </h5>
-        </div>
-        <div className="mx-3 text-sm text-base-content opacity-60 leading-relaxed">
-          {loading ? (
-            <div className="space-y-2">
-              {skeleton({ widthCls: 'w-full', heightCls: 'h-4' })}
-              {skeleton({ widthCls: 'w-full', heightCls: 'h-4' })}
-              {skeleton({ widthCls: 'w-3/4', heightCls: 'h-4' })}
-            </div>
-          ) : (
-            <p>{about}</p>
-          )}
-        </div>
-      </div>
-    </div>
+    <View style={styles.card}>
+      {loading ? (
+        <Skeleton width={100} height={24} />
+      ) : (
+        <Text style={cardStyles.cardTitle}>About Me</Text>
+      )}
+      {loading ? (
+        <View style={{ gap: spacing.sm }}>
+          <Skeleton width={'100%' as unknown as number} height={14} />
+          <Skeleton width={'100%' as unknown as number} height={14} />
+          <Skeleton width={'75%' as unknown as number} height={14} />
+        </View>
+      ) : (
+        <Text style={styles.text}>{about}</Text>
+      )}
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  card: {
+    backgroundColor: colors.cardBg,
+    borderRadius: radius.lg,
+    padding: spacing.lg,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+  text: {
+    fontSize: fontSize.sm,
+    color: colors.textSecondary,
+    lineHeight: 22,
+  },
+});
 
 export default AboutCard;

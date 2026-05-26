@@ -1,46 +1,58 @@
-import colors from '../data/colors.json';
+import React, { useEffect, useRef } from 'react';
+import { Animated, StyleSheet, type ViewStyle } from 'react-native';
+import { colors, radius } from '../theme';
 
-/** Coerce API fields that should be arrays (avoids crashes when the backend sends null, an object, or omits the key). */
 export function asArray<T>(value: unknown): T[] {
   return Array.isArray(value) ? (value as T[]) : [];
 }
 
-export const isDarkishTheme = (appliedTheme: string): boolean =>
-  ['dark', 'halloween', 'forest', 'black', 'luxury', 'dracula'].includes(
-    appliedTheme,
+interface SkeletonProps {
+  width: number | string;
+  height: number;
+  borderRadius?: number;
+  style?: ViewStyle;
+}
+
+export const Skeleton: React.FC<SkeletonProps> = ({
+  width,
+  height,
+  borderRadius = radius.sm,
+  style,
+}) => {
+  const opacity = useRef(new Animated.Value(0.3)).current;
+
+  useEffect(() => {
+    const animation = Animated.loop(
+      Animated.sequence([
+        Animated.timing(opacity, {
+          toValue: 1,
+          duration: 800,
+          useNativeDriver: true,
+        }),
+        Animated.timing(opacity, {
+          toValue: 0.3,
+          duration: 800,
+          useNativeDriver: true,
+        }),
+      ]),
+    );
+    animation.start();
+    return () => animation.stop();
+  }, [opacity]);
+
+  return (
+    <Animated.View
+      style={[
+        skeletonStyles.base,
+        { width, height, borderRadius, opacity },
+        style,
+      ]}
+    />
   );
-
-type Colors = {
-  [key: string]: { color: string | null; url: string };
 };
 
-export const getLanguageColor = (language: string): string => {
-  if (!language) return 'gray';
-  const langs = colors as Colors;
-  return langs[language]?.color || 'gray';
-};
-
-export const skeleton = ({
-  widthCls,
-  heightCls,
-  shape = 'rounded',
-  className = '',
-}: {
-  widthCls: string;
-  heightCls: string;
-  shape?: string;
-  className?: string;
-}) => (
-  <div
-    className={`animate-pulse bg-base-300 ${widthCls} ${heightCls} ${shape} ${className}`}
-  />
-);
-
-// Simple GA event helper used by some components
-export const ga = {
-  event: (action: string, params?: Record<string, string>) => {
-    try {
-      (window as any).gtag?.('event', action, params);
-    } catch {}
+const skeletonStyles = StyleSheet.create({
+  base: {
+    backgroundColor: colors.skeleton,
   },
-};
+});

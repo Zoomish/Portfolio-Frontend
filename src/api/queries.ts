@@ -19,7 +19,9 @@ export function useGithubRepos() {
         await apiClient.get<GithubReposResponse>('/github/repos');
       return data;
     },
-    staleTime: 1000 * 60 * 10, // 10 min
+    staleTime: 1000 * 60 * 10,
+    retry: 1,
+    retryDelay: 2000,
   });
 }
 
@@ -34,5 +36,7 @@ export function useLinkedinAll() {
       return data;
     },
     staleTime: 1000 * 60 * 10,
+    retry: 1,
+    retryDelay: 2000,
   });
 }

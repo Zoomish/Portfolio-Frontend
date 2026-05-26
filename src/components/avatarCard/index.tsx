@@ -1,95 +1,138 @@
+import React from 'react';
+import { Image, Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { FALLBACK_IMAGE } from '../../constants';
+import { colors, fontSize, radius, spacing } from '../../theme';
 import type { LinkedInBasicInfo } from '../../types';
-import { skeleton } from '../../utils';
-import LazyImage from '../lazyImage';
+import { Skeleton } from '../../utils';
 
 interface AvatarCardProps {
   profile: LinkedInBasicInfo | null;
   loading: boolean;
-  avatarRing: boolean;
   resumeFileUrl?: string;
 }
 
-const AvatarCard: React.FC<AvatarCardProps> = ({
-  profile,
-  loading,
-  avatarRing,
-  resumeFileUrl,
-}): JSX.Element => {
+const AvatarCard: React.FC<AvatarCardProps> = ({ profile, loading, resumeFileUrl }) => {
+  const handleDownloadResume = () => {
+    if (resumeFileUrl) Linking.openURL(resumeFileUrl);
+  };
+
   return (
-    <div className="card shadow-lg compact bg-base-100">
-      <div className="grid place-items-center py-8">
+    <View style={styles.card}>
+      <View style={styles.container}>
         {loading || !profile ? (
-          <div className="avatar opacity-90">
-            <div className="mb-8 rounded-full w-32 h-32">
-              {skeleton({ widthCls: 'w-full', heightCls: 'h-full', shape: '' })}
-            </div>
-          </div>
+          <Skeleton width={128} height={128} borderRadius={64} />
         ) : (
-          <div className="avatar opacity-90">
-            <div
-              className={`mb-8 rounded-full w-32 h-32 ${
-                avatarRing
-                  ? 'ring ring-primary ring-offset-base-100 ring-offset-2'
-                  : ''
-              }`}
-            >
-              <LazyImage
-                src={profile.profile_picture_url || FALLBACK_IMAGE}
-                alt={profile.fullname}
-                placeholder={skeleton({
-                  widthCls: 'w-full',
-                  heightCls: 'h-full',
-                  shape: '',
-                })}
-              />
-              {!loading && profile?.open_to_work && (
-                <div className="absolute -top-1 -right-16">
-                  <span className="badge badge-success badge-sm text-md font-bold text-white">
-                    #Open to Work
-                  </span>
-                </div>
-              )}
-            </div>
-          </div>
+          <View style={styles.avatarWrapper}>
+            <Image
+              source={{ uri: profile.profile_picture_url || FALLBACK_IMAGE }}
+              style={styles.avatar}
+            />
+            {profile.open_to_work && (
+              <View style={styles.badge}>
+                <Text style={styles.badgeText}>#Open to Work</Text>
+              </View>
+            )}
+          </View>
         )}
 
-        <div className="text-center mx-auto px-8">
-          <h5 className="font-bold text-2xl">
-            {loading || !profile ? (
-              skeleton({ widthCls: 'w-48', heightCls: 'h-8' })
-            ) : (
-              <span className="text-base-content opacity-70">
-                {profile.fullname}
-              </span>
-            )}
-          </h5>
-          <div className="mt-3 text-base-content text-opacity-60 font-mono">
-            {loading || !profile
-              ? skeleton({ widthCls: 'w-48', heightCls: 'h-5' })
-              : profile.headline}
-          </div>
-        </div>
-
-        {resumeFileUrl &&
-          (loading ? (
-            <div className="mt-6">
-              {skeleton({ widthCls: 'w-40', heightCls: 'h-8' })}
-            </div>
+        <View style={styles.textContainer}>
+          {loading || !profile ? (
+            <>
+              <Skeleton width={200} height={28} />
+              <Skeleton width={200} height={18} style={{ marginTop: spacing.sm }} />
+            </>
           ) : (
-            <a
-              href={resumeFileUrl}
-              target="_blank"
-              className="btn btn-outline btn-sm text-xs mt-6 opacity-50"
-              download
-              rel="noreferrer"
-            >
-              Download Resume
-            </a>
-          ))}
-      </div>
-    </div>
+            <>
+              <Text style={styles.name}>{profile.fullname}</Text>
+              <Text style={styles.headline}>{profile.headline}</Text>
+            </>
+          )}
+        </View>
+
+        {resumeFileUrl ? (
+          loading ? (
+            <Skeleton width={160} height={36} style={{ marginTop: spacing.lg }} />
+          ) : (
+            <TouchableOpacity style={styles.resumeBtn} onPress={handleDownloadResume}>
+              <Text style={styles.resumeBtnText}>Download Resume</Text>
+            </TouchableOpacity>
+          )
+        ) : null}
+      </View>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  card: {
+    backgroundColor: colors.cardBg,
+    borderRadius: radius.lg,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+  container: {
+    alignItems: 'center',
+    paddingVertical: spacing.xxl,
+    paddingHorizontal: spacing.lg,
+  },
+  avatarWrapper: {
+    position: 'relative',
+    marginBottom: spacing.lg,
+  },
+  avatar: {
+    width: 128,
+    height: 128,
+    borderRadius: 64,
+    borderWidth: 3,
+    borderColor: colors.accent,
+  },
+  badge: {
+    position: 'absolute',
+    top: -4,
+    right: -48,
+    backgroundColor: '#22c55e',
+    paddingHorizontal: spacing.sm,
+    paddingVertical: 2,
+    borderRadius: radius.full,
+  },
+  badgeText: {
+    color: '#fff',
+    fontSize: fontSize.xs,
+    fontWeight: '700',
+  },
+  textContainer: {
+    alignItems: 'center',
+    paddingHorizontal: spacing.lg,
+  },
+  name: {
+    fontSize: fontSize.xl,
+    fontWeight: '700',
+    color: colors.textPrimary,
+    opacity: 0.7,
+    textAlign: 'center',
+  },
+  headline: {
+    marginTop: spacing.sm,
+    fontSize: fontSize.sm,
+    color: colors.textSecondary,
+    textAlign: 'center',
+    fontFamily: 'monospace',
+  },
+  resumeBtn: {
+    marginTop: spacing.lg,
+    borderWidth: 1,
+    borderColor: colors.textMuted,
+    borderRadius: radius.full,
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.sm,
+  },
+  resumeBtnText: {
+    fontSize: fontSize.xs,
+    color: colors.textSecondary,
+  },
+});
 
 export default AvatarCard;

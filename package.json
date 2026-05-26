@@ -1,53 +1,34 @@
 {
-  "name": "@zoomish/portfolio",
-  "description": "my portfolio",
+  "name": "portfolio-mobile",
   "version": "1.0.0",
-  "type": "module",
-  "author": "Zoomish",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Zoomish/Portfolio-Frontend.git"
+  "main": "src/main.tsx",
+  "engines": {
+    "node": ">=20 <23"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "lint:fix": "eslint . --fix --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "prettier": "prettier --check \"./**/*.{js,jsx,ts,tsx,css,md,json}\"",
-    "prettier:fix": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\"",
-    "preview": "vite preview"
+    "start": "expo start --lan",
+    "start:clear": "expo start --lan --clear",
+    "android": "expo start --android --lan",
+    "ios": "expo start --ios --lan",
+    "prebuild": "expo prebuild"
   },
   "dependencies": {
-    "@vercel/analytics": "^1.5.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "@expo/vector-icons": "^15.0.3",
     "@tanstack/react-query": "^5.62.0",
     "axios": "^1.7.9",
     "date-fns": "^4.1.0",
-    "react-helmet-async": "^2.0.5",
-    "react-hotjar": "^6.3.1",
-    "react-icons": "^5.4.0"
+    "expo": "^54",
+    "expo-font": "~14.0.11",
+    "expo-linking": "~8.0.12",
+    "expo-status-bar": "~3.0.9",
+    "react": "19.1.0",
+    "react-native": "0.81.5",
+    "react-native-safe-area-context": "~5.6.0"
   },
   "devDependencies": {
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "@typescript-eslint/eslint-plugin": "^7.8.0",
-    "@typescript-eslint/parser": "^7.3.1",
-    "@vitejs/plugin-react": "^4.3.4",
-    "autoprefixer": "^10.4.20",
-    "daisyui": "^4.11.1",
-    "eslint": "^8.57.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.1.3",
-    "eslint-plugin-react-hooks": "^5.1.0",
-    "eslint-plugin-react-refresh": "^0.4.14",
-    "postcss": "^8.4.38",
-    "prettier": "^3.3.2",
-    "tailwindcss": "^3.4.3",
-    "typescript": "^5.6.2",
-    "vail": "^1.0.3",
-    "vite": "^6.0.3",
-    "vite-plugin-html": "^3.2.2",
-    "vite-plugin-pwa": "^0.21.1"
-  }
+    "@babel/core": "^7.25.0",
+    "@types/react": "~19.1.10",
+    "typescript": "~5.9.2"
+  },
+  "private": true
 }

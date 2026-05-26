@@ -2,6 +2,9 @@
 /dist
 /node_modules
 /build
+/android
+/ios
+/.expo
 *.pem
 # Logs
 logs

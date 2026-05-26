@@ -1,54 +1,68 @@
-import { skeleton } from '../../utils';
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { cardStyles, colors, fontSize, radius, spacing } from '../../theme';
+import { Skeleton } from '../../utils';
 
-const SkillCard = ({
-  loading,
-  skills,
-}: {
+interface Props {
   loading: boolean;
   skills: string[];
-}) => {
-  const renderSkeleton = () => {
-    const array = [];
-    for (let index = 0; index < 12; index++) {
-      array.push(
-        <div key={index}>
-          {skeleton({ widthCls: 'w-16', heightCls: 'h-4', className: 'm-1' })}
-        </div>,
-      );
-    }
+}
 
-    return array;
-  };
+const SkillCard: React.FC<Props> = ({ loading, skills }) => {
+  const renderSkeleton = () =>
+    Array.from({ length: 8 }).map((_, i) => (
+      <Skeleton key={i} width={64} height={24} borderRadius={radius.full} style={{ margin: 4 }} />
+    ));
 
   return (
-    <div className="card shadow-lg compact bg-base-100">
-      <div className="card-body">
-        <div className="mx-3">
-          <h5 className="card-title">
-            {loading ? (
-              skeleton({ widthCls: 'w-32', heightCls: 'h-8' })
-            ) : (
-              <span className="text-base-content opacity-70">Tech Stack</span>
-            )}
-          </h5>
-        </div>
-        <div className="p-3 flow-root">
-          <div className="-m-1 flex flex-wrap justify-center">
-            {loading
-              ? renderSkeleton()
-              : skills.map((skill, index) => (
-                  <div
-                    key={index}
-                    className="m-1 text-xs inline-flex items-center font-bold leading-sm px-3 py-1 badge-primary bg-opacity-90 rounded-full"
-                  >
-                    {skill}
-                  </div>
-                ))}
-          </div>
-        </div>
-      </div>
-    </div>
+    <View style={styles.card}>
+      {loading ? (
+        <Skeleton width={120} height={24} />
+      ) : (
+        <Text style={cardStyles.cardTitle}>Tech Stack</Text>
+      )}
+      <View style={styles.skillsContainer}>
+        {loading
+          ? renderSkeleton()
+          : skills.map((skill, index) => (
+              <View key={index} style={styles.badge}>
+                <Text style={styles.badgeText}>{skill}</Text>
+              </View>
+            ))}
+      </View>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  card: {
+    backgroundColor: colors.cardBg,
+    borderRadius: radius.lg,
+    padding: spacing.lg,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+  skillsContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    marginTop: spacing.sm,
+  },
+  badge: {
+    backgroundColor: colors.badgeBg,
+    borderRadius: radius.full,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.xs,
+    margin: 4,
+  },
+  badgeText: {
+    color: colors.badgeText,
+    fontSize: fontSize.xs,
+    fontWeight: '700',
+  },
+});
 
 export default SkillCard;

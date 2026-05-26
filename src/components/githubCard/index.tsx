@@ -1,125 +1,150 @@
-import {
-  FaStar,
-  FaCodeBranch,
-  FaGithub,
-  FaExternalLinkAlt,
-} from 'react-icons/fa';
-import { skeleton } from '../../utils';
+import { Ionicons } from '@expo/vector-icons';
+import React from 'react';
+import { Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { cardStyles, colors, fontSize, languageColors, radius, spacing } from '../../theme';
 import type { FilteredRepo } from '../../types';
-
-const languageColors: Record<string, string> = {
-  TypeScript: 'text-blue-400',
-  JavaScript: 'text-yellow-400',
-  Python: 'text-green-400',
-  Rust: 'text-orange-400',
-  Go: 'text-cyan-400',
-  CSS: 'text-pink-400',
-};
+import { Skeleton } from '../../utils';
 
 interface Props {
   repos: FilteredRepo[];
   loading: boolean;
 }
 
-const RepoCard: React.FC<{ repo: FilteredRepo }> = ({ repo }) => (
-  <div className="card shadow-lg compact bg-base-100 h-full">
-    <div className="p-6 h-full flex flex-col">
-      <div className="flex items-start justify-between mb-2">
-        <h3 className="font-semibold text-base-content opacity-80 text-sm leading-tight truncate flex-1 mr-2">
+const RepoCard: React.FC<{ repo: FilteredRepo }> = ({ repo }) => {
+  const langColor = languageColors[repo.language] || colors.textMuted;
+
+  return (
+    <View style={styles.repoCard}>
+      <View style={styles.repoHeader}>
+        <Text style={styles.repoName} numberOfLines={1}>
           {repo.name}
-        </h3>
-        <div className="flex gap-2 shrink-0">
+        </Text>
+        <View style={styles.repoLinks}>
           {repo.link && (
-            <a
-              href={repo.link}
-              target="_blank"
-              rel="noreferrer"
-              className="text-base-content opacity-40 hover:opacity-80 transition-opacity"
-              title="Live demo"
-            >
-              <FaExternalLinkAlt size={12} />
-            </a>
+            <TouchableOpacity onPress={() => Linking.openURL(repo.link!)}>
+              <Ionicons name="open-outline" size={14} color={colors.textMuted} />
+            </TouchableOpacity>
           )}
-          <a
-            href={repo.url}
-            target="_blank"
-            rel="noreferrer"
-            className="text-base-content opacity-40 hover:opacity-80 transition-opacity"
-            title="View on GitHub"
-          >
-            <FaGithub size={14} />
-          </a>
-        </div>
-      </div>
+          <TouchableOpacity onPress={() => Linking.openURL(repo.url)}>
+            <Ionicons name="logo-github" size={16} color={colors.textMuted} />
+          </TouchableOpacity>
+        </View>
+      </View>
 
-      <p className="text-xs text-base-content opacity-50 flex-1 mb-3 leading-relaxed line-clamp-3">
+      <Text style={styles.repoDescription} numberOfLines={3}>
         {repo.description || 'No description provided.'}
-      </p>
+      </Text>
 
-      <div className="flex items-center gap-3 mt-auto flex-wrap">
+      <View style={styles.repoMeta}>
         {repo.language && (
-          <span
-            className={`text-xs font-mono ${languageColors[repo.language] || 'text-base-content opacity-60'}`}
-          >
-            ● {repo.language}
-          </span>
+          <View style={styles.metaItem}>
+            <View style={[styles.langDot, { backgroundColor: langColor }]} />
+            <Text style={styles.metaText}>{repo.language}</Text>
+          </View>
         )}
         {repo.stars > 0 && (
-          <span className="flex items-center gap-1 text-xs text-base-content opacity-50">
-            <FaStar size={10} /> {repo.stars}
-          </span>
+          <View style={styles.metaItem}>
+            <Ionicons name="star" size={12} color={colors.textMuted} />
+            <Text style={styles.metaText}>{repo.stars}</Text>
+          </View>
         )}
         {repo.forks > 0 && (
-          <span className="flex items-center gap-1 text-xs text-base-content opacity-50">
-            <FaCodeBranch size={10} /> {repo.forks}
-          </span>
+          <View style={styles.metaItem}>
+            <Ionicons name="git-branch" size={12} color={colors.textMuted} />
+            <Text style={styles.metaText}>{repo.forks}</Text>
+          </View>
         )}
-      </div>
-    </div>
-  </div>
-);
+      </View>
+    </View>
+  );
+};
 
 const GithubCard: React.FC<Props> = ({ repos, loading }) => {
   const safeRepos = Array.isArray(repos) ? repos : [];
   const sortedRepos = [...safeRepos].sort((a, b) => b.stars - a.stars);
 
+  const renderSkeleton = () =>
+    Array.from({ length: 4 }).map((_, i) => (
+      <View key={i} style={styles.repoCard}>
+        <Skeleton width={160} height={16} />
+        <Skeleton width={'100%' as unknown as number} height={12} style={{ marginTop: spacing.sm }} />
+        <Skeleton width={'75%' as unknown as number} height={12} style={{ marginTop: spacing.xs }} />
+        <Skeleton width={80} height={14} style={{ marginTop: spacing.md }} />
+      </View>
+    ));
+
   return (
-    <div className="col-span-1 lg:col-span-2">
-      <div className="card compact shadow bg-base-100 bg-opacity-40">
-        <div className="card-body">
-          <div className="mx-3 mb-2">
-            <h5 className="card-title">
-              <span className="text-base-content opacity-70">
-                Github Projects
-              </span>
-            </h5>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {loading
-              ? Array.from({ length: 6 }).map((_, i) => (
-                  <div key={i} className="card shadow compact bg-base-100 p-6">
-                    <div className="space-y-2">
-                      {skeleton({ widthCls: 'w-40', heightCls: 'h-4' })}
-                      <div className="mt-2">
-                        {skeleton({ widthCls: 'w-full', heightCls: 'h-3' })}
-                      </div>
-                      <div className="mt-1">
-                        {skeleton({ widthCls: 'w-3/4', heightCls: 'h-3' })}
-                      </div>
-                      <div className="mt-3">
-                        {skeleton({ widthCls: 'w-20', heightCls: 'h-4' })}
-                      </div>
-                    </div>
-                  </div>
-                ))
-              : sortedRepos.map((repo) => (
-                  <RepoCard key={repo.name} repo={repo} />
-                ))}
-          </div>
-        </div>
-      </div>
-    </div>
+    <View style={styles.card}>
+      <Text style={cardStyles.cardTitle}>Github Projects</Text>
+      {loading ? renderSkeleton() : sortedRepos.map((repo) => (
+        <RepoCard key={repo.name} repo={repo} />
+      ))}
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  card: {
+    backgroundColor: colors.cardBg,
+    borderRadius: radius.lg,
+    padding: spacing.lg,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    elevation: 3,
+  },
+  repoCard: {
+    backgroundColor: colors.surface,
+    borderRadius: radius.md,
+    padding: spacing.lg,
+    marginBottom: spacing.sm,
+  },
+  repoHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: spacing.sm,
+  },
+  repoName: {
+    flex: 1,
+    fontSize: fontSize.sm,
+    fontWeight: '600',
+    color: colors.textPrimary,
+    opacity: 0.8,
+    marginRight: spacing.sm,
+  },
+  repoLinks: {
+    flexDirection: 'row',
+    gap: spacing.sm,
+  },
+  repoDescription: {
+    fontSize: fontSize.xs,
+    color: colors.textMuted,
+    lineHeight: 18,
+    marginBottom: spacing.md,
+  },
+  repoMeta: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.md,
+    flexWrap: 'wrap',
+  },
+  metaItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+  },
+  langDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+  },
+  metaText: {
+    fontSize: fontSize.xs,
+    color: colors.textMuted,
+    fontFamily: 'monospace',
+  },
+});
 
 export default GithubCard;
