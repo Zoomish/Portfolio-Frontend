@@ -3,10 +3,15 @@ import { defineConfig, loadEnv } from 'vite';
 import { createHtmlPlugin } from 'vite-plugin-html';
 import { VitePWA } from 'vite-plugin-pwa';
 import { APP_CONFIG } from './src/config/app.config';
+import {
+  buildHtmlInjectData,
+  resolveSeoConfig,
+} from './src/config/seo.config';
+import { seoBuildPlugin } from './vite.seoPlugin';
 
-// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
+  const seo = resolveSeoConfig(env);
 
   return {
     base: '/',
@@ -14,13 +19,10 @@ export default defineConfig(({ mode }) => {
       react(),
       createHtmlPlugin({
         inject: {
-          data: {
-            metaTitle: env.VITE_SEO_TITLE || 'Portfolio',
-            metaDescription: env.VITE_SEO_DESCRIPTION || '',
-            metaImageURL: env.VITE_SEO_IMAGE_URL || '',
-          },
+          data: buildHtmlInjectData(seo),
         },
       }),
+      seoBuildPlugin(seo),
       ...(APP_CONFIG.enablePWA
         ? [
             VitePWA({
@@ -30,9 +32,9 @@ export default defineConfig(({ mode }) => {
               },
               includeAssets: ['logo.png'],
               manifest: {
-                name: 'Portfolio',
-                short_name: 'Portfolio',
-                description: 'Personal Portfolio',
+                name: `${seo.brandName} Portfolio`,
+                short_name: seo.brandName,
+                description: seo.description,
                 icons: [
                   {
                     src: 'logo.png',

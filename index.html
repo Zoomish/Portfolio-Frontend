@@ -1,34 +1,68 @@
- <!doctype html>
-<html lang="en">
+<!doctype html>
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%- metaTitle %></title>
-    <link rel="manifest" crossorigin="use-credentials" href="/manifest.json">
-    <meta property="title" content="<%- metaTitle %>" />
+    <link rel="canonical" href="<%- canonicalUrl %>" />
+    <link rel="manifest" crossorigin="use-credentials" href="/manifest.json" />
     <meta name="description" content="<%- metaDescription %>" />
+    <meta name="keywords" content="<%- metaKeywords %>" />
+    <meta name="author" content="<%- ogSiteName %>" />
+    <meta name="robots" content="index, follow" />
+    <% if (googleSiteVerification) { %>
+    <meta
+      name="google-site-verification"
+      content="<%- googleSiteVerification %>"
+    />
+    <% } %>
+    <% if (yandexSiteVerification) { %>
+    <meta name="yandex-verification" content="<%- yandexSiteVerification %>" />
+    <% } %>
     <script src="https://t.contentsquare.net/uxa/02e18f7c4fef5.js"></script>
 
     <meta itemprop="name" content="<%- metaTitle %>" />
     <meta itemprop="description" content="<%- metaDescription %>" />
     <meta itemprop="image" content="<%- metaImageURL %>" />
 
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="<%- ogSiteName %>" />
+    <meta property="og:locale" content="<%- ogLocale %>" />
+    <meta property="og:url" content="<%- canonicalUrl %>" />
     <meta property="og:title" content="<%- metaTitle %>" />
     <meta property="og:description" content="<%- metaDescription %>" />
     <meta property="og:image" content="<%- metaImageURL %>" />
     <meta property="og:image:width" content="500" />
     <meta property="og:image:height" content="500" />
-    <meta property="og:image:alt" content="Zoomish Portfolio" />
+    <meta property="og:image:alt" content="<%- ogSiteName %>" />
     <meta property="og:image:secure_url" content="<%- metaImageURL %>" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="<%- metaTitle %>" />
     <meta name="twitter:description" content="<%- metaDescription %>" />
     <meta name="twitter:image" content="<%- metaImageURL %>" />
+
+    <script type="application/ld+json">
+      <%- jsonLd %>
+    </script>
+    <style>
+      #static-seo {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
   </head>
   <body>
+    <%- staticSeoHtml %>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
