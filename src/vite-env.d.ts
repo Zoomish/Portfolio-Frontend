@@ -13,6 +13,7 @@ interface ImportMetaEnv {
   readonly VITE_LINKEDIN_URL?: string;
   readonly VITE_GOOGLE_SITE_VERIFICATION?: string;
   readonly VITE_YANDEX_SITE_VERIFICATION?: string;
+  readonly VITE_GTM_ID?: string;
   readonly VITE_GA_ID?: string;
   readonly VITE_HOTJAR_ID?: string;
   readonly VITE_HOTJAR_VERSION?: string;

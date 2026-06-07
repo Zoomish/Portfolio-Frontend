@@ -78,7 +78,9 @@ function App() {
     if (theme) document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
-  const googleAnalyticsId = import.meta.env.VITE_GA_ID;
+  const googleAnalyticsId = import.meta.env.VITE_GTM_ID
+    ? undefined
+    : import.meta.env.VITE_GA_ID;
   const { externalProjects, themeConfig, footer } = APP_CONFIG;
 
   return (

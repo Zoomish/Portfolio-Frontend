@@ -19,7 +19,10 @@ export default defineConfig(({ mode }) => {
       react(),
       createHtmlPlugin({
         inject: {
-          data: buildHtmlInjectData(seo),
+          data: {
+            ...buildHtmlInjectData(seo),
+            gtmId: env.VITE_GTM_ID || '',
+          },
         },
       }),
       seoBuildPlugin(seo),
