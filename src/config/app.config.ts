@@ -1,6 +1,4 @@
-// src/config/app.config.ts
-// Static configuration: theme, resume, external projects, SEO, analytics.
-// Dynamic data (profile, experience, skills, posts) comes from the backend API.
+// Static site config. Profile and repos are baked in from the build snapshot.
 
 export interface ExternalProject {
   title: string;
@@ -27,6 +25,14 @@ export interface ThemeConfig {
 }
 
 export const APP_CONFIG = {
+  siteUrl: 'https://zoomish-portfolio.vercel.app',
+  locale: 'ru_RU',
+  googleSiteVerification: 'Dkb4KB5OpqSqQyUolntbKUHxG5MnZthFZTQcmyEchiM',
+  analytics: {
+    gtmId: 'GTM-NCDNRHJK',
+    hotjarId: 621412,
+    hotjarVersion: 6,
+  },
   github: {
     username: 'Zoomish',
   },

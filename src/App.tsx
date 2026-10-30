@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { hotjar } from 'react-hotjar';
-import { useGithubRepos, useLinkedinAll } from './api/queries';
 import AboutCard from './components/aboutCard';
 import AvatarCard from './components/avatarCard';
 import DetailsCard from './components/detailsCard';
@@ -16,13 +15,17 @@ import SkillCard from './components/skillCard';
 import { APP_CONFIG } from './config/app.config';
 import { BG_COLOR, LOCAL_STORAGE_KEY_NAME } from './constants';
 import { DEFAULT_THEMES } from './constants/defaultThemes';
+import siteContentJson from './generated/site-content.json';
 import type {
-  FilteredRepo,
-  LinkedInEducation,
-  LinkedInExperience,
-  LinkedInPost,
+    FilteredRepo,
+    LinkedInEducation,
+    LinkedInExperience,
+    LinkedInPost,
+    SiteContent,
 } from './types';
 import { asArray } from './utils';
+
+const siteContent = siteContentJson as SiteContent;
 
 const getInitialTheme = (): string => {
   const { themeConfig } = APP_CONFIG;
@@ -45,11 +48,8 @@ const getInitialTheme = (): string => {
 function App() {
   const [theme, setTheme] = useState<string>(DEFAULT_THEMES[0]);
 
-  const { data: githubData, isLoading: githubLoading } = useGithubRepos();
-  const { data: linkedinData, isLoading: linkedinLoading } = useLinkedinAll();
-
-  const loading = linkedinLoading;
-
+  const loading = false;
+  const linkedinData = siteContent.linkedin;
   const profile = linkedinData?.details?.data?.data?.basic_info ?? null;
   const experience = asArray<LinkedInExperience>(
     linkedinData?.details?.data?.data?.experience,
@@ -61,16 +61,15 @@ function App() {
   const posts = asArray<LinkedInPost>(
     linkedinData?.posts?.data?.data?.posts,
   );
-  const repos = asArray<FilteredRepo>(githubData?.data);
+  const repos = asArray<FilteredRepo>(siteContent.github?.data);
   const skills = asArray<string>(profile?.top_skills);
 
   useEffect(() => {
     setTheme(getInitialTheme());
 
-    const hotjarId = import.meta.env.VITE_HOTJAR_ID;
-    const hotjarVersion = Number(import.meta.env.VITE_HOTJAR_VERSION) || 6;
+    const { hotjarId, hotjarVersion } = APP_CONFIG.analytics;
     if (hotjarId) {
-      hotjar.initialize({ id: Number(hotjarId), sv: hotjarVersion });
+      hotjar.initialize({ id: hotjarId, sv: hotjarVersion });
     }
   }, []);
 
@@ -78,18 +77,12 @@ function App() {
     if (theme) document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
-  const googleAnalyticsId = import.meta.env.VITE_GTM_ID
-    ? undefined
-    : import.meta.env.VITE_GA_ID;
   const { externalProjects, themeConfig, footer } = APP_CONFIG;
 
   return (
     <HelmetProvider>
       <div className="fade-in h-screen">
-        <HeadTagEditor
-          googleAnalyticsId={googleAnalyticsId}
-          appliedTheme={theme}
-        />
+        <HeadTagEditor appliedTheme={theme} />
         <div className={`p-4 lg:p-10 min-h-full ${BG_COLOR}`}>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 rounded-box">
             {/* ── Left sidebar ───────────────────────────────────── */}
@@ -131,17 +124,16 @@ function App() {
             {/* ── Main content ───────────────────────────────────── */}
             <div className="lg:col-span-2 col-span-1">
               <div className="grid grid-cols-1 gap-6">
-                <GithubCard repos={repos} loading={githubLoading} />
+                <GithubCard repos={repos} loading={loading} />
                 <AboutCard about={profile?.about ?? null} loading={loading} />
-                {posts?.length > 0 || linkedinLoading ? (
-                  <PublicationsCard posts={posts} loading={linkedinLoading} />
+                {posts.length > 0 ? (
+                  <PublicationsCard posts={posts} loading={loading} />
                 ) : null}
                 {externalProjects.projects?.length > 0 && (
                   <ExternalProjectCard
                     loading={false}
                     header={externalProjects.header}
                     externalProjects={externalProjects.projects}
-                    googleAnalyticId={googleAnalyticsId}
                   />
                 )}
               </div>

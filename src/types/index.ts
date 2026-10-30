@@ -124,6 +124,7 @@ export interface LinkedInBasicInfo {
   connection_count: number;
   top_skills: string[];
   email: string | null;
+  current_company?: string;
 }
 
 export interface LinkedInProfileResponse {
@@ -178,4 +179,10 @@ export interface LinkedInAllResponse {
     data: LinkedInContactResponse;
     cached: boolean;
   };
+}
+
+export interface SiteContent {
+  fetchedAt: string;
+  linkedin: LinkedInAllResponse;
+  github: GithubReposResponse;
 }

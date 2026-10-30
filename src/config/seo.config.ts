@@ -1,3 +1,4 @@
+import type { SiteContent } from '../types';
 import { APP_CONFIG } from './app.config';
 
 export interface SeoConfig {
@@ -12,52 +13,112 @@ export interface SeoConfig {
   email: string;
   githubUrl: string;
   linkedinUrl: string;
+  telegramUrl: string;
   keywords: string;
+  employer: string;
   googleSiteVerification: string;
   yandexSiteVerification: string;
 }
 
-const defaultSiteUrl = 'https://zoomish-portfolio.vercel.app';
-const defaultPersonName = 'Egor Rezvyi';
-const defaultJobTitle = 'Senior Frontend Developer';
+const defaultPersonName = 'Egor Rezvyj';
+const defaultJobTitle = 'Go Backend Developer';
+const defaultLinkedinUrl = 'https://www.linkedin.com/in/zoomish';
+const defaultTelegramUrl = 'https://t.me/ZoomishWork';
 const defaultDescription =
-  'Я Резвый Егор (Zoomish), Senior Frontend developer с 6+ годами опыта. Портфолио, проекты на GitHub, опыт работы и навыки.';
+  'Egor Rezvyj (Zoomish), Go backend developer. 3+ years of commercial Go: microservices, Kafka, PostgreSQL, gRPC, OpenAPI. Previously frontend. Open to remote Middle+ roles.';
 
-const trimTrailingSlash = (url: string) => url.replace(/\/$/, '');
+const collapse = (value: string) => value.replace(/\s+/g, ' ').trim();
 
-export const resolveSeoConfig = (
-  env: Record<string, string> = {},
-): SeoConfig => {
+const truncate = (value: string, max = 300) => {
+  const text = collapse(value);
+  if (text.length <= max) return text;
+
+  const cut = text.slice(0, max);
+  const space = cut.lastIndexOf(' ');
+  const trimmed = (space > 180 ? cut.slice(0, space) : cut).trimEnd();
+
+  return `${trimmed}…`;
+};
+
+const jobTitleFromHeadline = (headline: string) =>
+  headline.split('|')[0]?.trim() || defaultJobTitle;
+
+const keywordsFrom = (
+  brand: string,
+  name: string,
+  job: string,
+  headline: string,
+) => {
+  const parts = headline
+    .split(/[|·]/)
+    .map((part) => part.trim())
+    .filter(Boolean);
+
+  return [...new Set([brand, name, job, ...parts, 'portfolio'])].join(', ');
+};
+
+export const resolveSeoConfig = (content: SiteContent): SeoConfig => {
+  const profile = content.linkedin.details?.data?.data;
+  const info = profile?.basic_info;
+  const contact = content.linkedin.contact?.data?.data;
   const brandName = APP_CONFIG.github.username;
-  const siteUrl = trimTrailingSlash(env.VITE_SITE_URL || defaultSiteUrl);
-  const personName = env.VITE_SEO_PERSON_NAME || defaultPersonName;
-  const jobTitle = env.VITE_SEO_JOB_TITLE || defaultJobTitle;
+  const personName = info?.fullname || defaultPersonName;
+  const headline = info?.headline || defaultJobTitle;
+  const jobTitle = jobTitleFromHeadline(headline);
+  const siteUrl = APP_CONFIG.siteUrl.replace(/\/$/, '');
+  const telegramUrl =
+    contact?.websites?.find((site) => site.url.includes('t.me'))?.url ||
+    defaultTelegramUrl;
+  const employer =
+    info?.current_company ||
+    profile?.experience?.find((item) => item.is_current)?.company ||
+    '';
 
   return {
     siteUrl,
     brandName,
     personName,
     jobTitle,
-    title:
-      env.VITE_SEO_TITLE ||
-      `${brandName} — ${personName} | ${jobTitle}`,
-    description: env.VITE_SEO_DESCRIPTION || defaultDescription,
-    imageUrl: env.VITE_SEO_IMAGE_URL || `${siteUrl}/logo.png`,
-    locale: env.VITE_SEO_LOCALE || 'ru_RU',
-    email: env.VITE_SEO_EMAIL || APP_CONFIG.social.email,
+    title: `${brandName} — ${personName} | ${jobTitle}`,
+    description: info?.about ? truncate(info.about) : defaultDescription,
+    imageUrl: `${siteUrl}/logo.png`,
+    locale: APP_CONFIG.locale,
+    email: info?.email || contact?.email || APP_CONFIG.social.email,
     githubUrl: `https://github.com/${brandName}`,
-    linkedinUrl: env.VITE_LINKEDIN_URL || '',
-    keywords:
-      env.VITE_SEO_KEYWORDS ||
-      `${brandName}, ${personName}, frontend developer, React, TypeScript, portfolio`,
-    googleSiteVerification: env.VITE_GOOGLE_SITE_VERIFICATION || '',
-    yandexSiteVerification: env.VITE_YANDEX_SITE_VERIFICATION || '',
+    linkedinUrl: info?.profile_url || defaultLinkedinUrl,
+    telegramUrl,
+    keywords: keywordsFrom(brandName, personName, jobTitle, headline),
+    employer,
+    googleSiteVerification: APP_CONFIG.googleSiteVerification,
+    yandexSiteVerification: '',
   };
 };
 
 export const buildJsonLd = (config: SeoConfig): string => {
-  const sameAs = [config.githubUrl, config.linkedinUrl].filter(Boolean);
+  const sameAs = [
+    config.githubUrl,
+    config.linkedinUrl,
+    config.telegramUrl,
+  ].filter(Boolean);
   const language = config.locale.split('_')[0];
+  const person: Record<string, unknown> = {
+    '@type': 'Person',
+    '@id': `${config.siteUrl}/#person`,
+    name: config.personName,
+    alternateName: config.brandName,
+    url: config.siteUrl,
+    email: config.email,
+    jobTitle: config.jobTitle,
+    image: config.imageUrl,
+    sameAs,
+  };
+
+  if (config.employer) {
+    person.worksFor = {
+      '@type': 'Organization',
+      name: config.employer,
+    };
+  }
 
   return JSON.stringify({
     '@context': 'https://schema.org',
@@ -71,17 +132,7 @@ export const buildJsonLd = (config: SeoConfig): string => {
         inLanguage: language,
         publisher: { '@id': `${config.siteUrl}/#person` },
       },
-      {
-        '@type': 'Person',
-        '@id': `${config.siteUrl}/#person`,
-        name: config.personName,
-        alternateName: config.brandName,
-        url: config.siteUrl,
-        email: config.email,
-        jobTitle: config.jobTitle,
-        image: config.imageUrl,
-        sameAs,
-      },
+      person,
       {
         '@type': 'ProfilePage',
         '@id': `${config.siteUrl}/#profilepage`,
@@ -99,6 +150,9 @@ export const buildStaticSeoHtml = (config: SeoConfig): string => {
   const linkedinBlock = config.linkedinUrl
     ? `<p>LinkedIn: <a href="${config.linkedinUrl}">${config.linkedinUrl}</a></p>`
     : '';
+  const telegramBlock = config.telegramUrl
+    ? `<p>Telegram: <a href="${config.telegramUrl}">${config.telegramUrl}</a></p>`
+    : '';
 
   return `<main id="static-seo" aria-label="${config.brandName} portfolio">
   <h1>${config.brandName} — ${config.personName}</h1>
@@ -106,6 +160,7 @@ export const buildStaticSeoHtml = (config: SeoConfig): string => {
   <p>${config.description}</p>
   <p>GitHub: <a href="${config.githubUrl}">${config.githubUrl}</a></p>
   ${linkedinBlock}
+  ${telegramBlock}
   <p>Email: <a href="mailto:${config.email}">${config.email}</a></p>
 </main>`;
 };

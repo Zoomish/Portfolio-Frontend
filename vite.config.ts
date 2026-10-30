@@ -1,17 +1,28 @@
 import react from '@vitejs/plugin-react';
-import { defineConfig, loadEnv } from 'vite';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { defineConfig } from 'vite';
 import { createHtmlPlugin } from 'vite-plugin-html';
 import { VitePWA } from 'vite-plugin-pwa';
 import { APP_CONFIG } from './src/config/app.config';
 import {
-  buildHtmlInjectData,
-  resolveSeoConfig,
+    buildHtmlInjectData,
+    resolveSeoConfig,
 } from './src/config/seo.config';
+import type { SiteContent } from './src/types';
 import { seoBuildPlugin } from './vite.seoPlugin';
 
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), '');
-  const seo = resolveSeoConfig(env);
+const readSiteContent = (): SiteContent => {
+  const raw = readFileSync(
+    resolve(process.cwd(), 'src/generated/site-content.json'),
+    'utf-8',
+  );
+
+  return JSON.parse(raw) as SiteContent;
+};
+
+export default defineConfig(() => {
+  const seo = resolveSeoConfig(readSiteContent());
 
   return {
     base: '/',
@@ -21,7 +32,7 @@ export default defineConfig(({ mode }) => {
         inject: {
           data: {
             ...buildHtmlInjectData(seo),
-            gtmId: env.VITE_GTM_ID || '',
+            gtmId: APP_CONFIG.analytics.gtmId,
           },
         },
       }),
