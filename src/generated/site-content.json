@@ -1,50 +1,20 @@
 {
-  "fetchedAt": "2026-10-29T22:48:44.570Z",
+  "fetchedAt": "2026-10-30T15:40:18.414Z",
   "linkedin": {
     "posts": {
       "data": {
-        "success": true,
-        "message": "response retrieved successfully",
         "data": {
           "posts": [
             {
+              "url": "https://www.linkedin.com/posts/zoomish_activity-7442035250186293248-CUfI?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAHB0nHQBL472xlQzJ0jo1KU0fo0rx4C8Lzc",
               "urn": {
-                "activity_urn": "7442035250186293248",
                 "share_urn": "7442035249385074688",
-                "ugcPost_urn": null
-              },
-              "full_urn": "urn:li:activity:7442035250186293248",
-              "posted_at": {
-                "date": "2026-03-24 03:31:09",
-                "relative": "7 months ago • Visible to anyone on or off LinkedIn",
-                "timestamp": 1774319469973
-              },
-              "url": "https://www.linkedin.com/posts/zoomish_activity-7442035250186293248-CUfI?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAHBtxR4BG81HmhcEn382uzijexHH70DJBtQ",
-              "post_type": "regular",
-              "author": {
-                "first_name": "Egor",
-                "last_name": "Rezvyj",
-                "headline": "Go Backend Developer | 3+ yrs Go | Kafka · PostgreSQL · OpenAPI | Ex-Frontend",
-                "username": "zoomish",
-                "profile_url": "https://www.linkedin.com/in/zoomish?miniProfileUrn=urn%3Ali%3Afsd_profile%3AACoAAFyCHX4BnOC_2ppnLECIPu9aLaPFq6jXDvY",
-                "profile_picture": "https://media.licdn.com/dms/image/v2/D4E35AQHrSSu7XrRkHA/profile-framedphoto-shrink_800_800/B4EZuhjknJLwAg-/0/1767942015723?e=1793919600&v=beta&t=-0d-JofMlNIkZDP_uBow3MUsOCFLeSGXU3OTT4UdN4E",
-                "actor_type": "member"
-              },
-              "stats": {
-                "total_reactions": 49,
-                "like": 39,
-                "support": 0,
-                "love": 0,
-                "insight": 0,
-                "celebrate": 1,
-                "funny": 9,
-                "curious": 0,
-                "comments": 1,
-                "reposts": 1
+                "ugcPost_urn": null,
+                "activity_urn": "7442035250186293248"
               },
               "media": {
-                "type": "image",
                 "url": "https://media.licdn.com/dms/image/v2/D4D22AQGkYqZ3nR895A/feedshare-image-high-res/B4DZ0drn50KUAU-/0/1774319468584?e=1795046400&v=beta&t=1TBsZNPsf0xQLY6X-1xz-eWHlGhMS2Yx44_4VA6I39M",
+                "type": "image",
                 "images": [
                   {
                     "url": "https://media.licdn.com/dms/image/v2/D4D22AQGkYqZ3nR895A/feedshare-image-high-res/B4DZ0drn50KUAU-/0/1774319468584?e=1795046400&v=beta&t=1TBsZNPsf0xQLY6X-1xz-eWHlGhMS2Yx44_4VA6I39M",
@@ -52,46 +22,46 @@
                     "height": 1536
                   }
                 ]
+              },
+              "stats": {
+                "like": 39,
+                "love": 0,
+                "funny": 9,
+                "curious": 0,
+                "insight": 0,
+                "reposts": 1,
+                "support": 0,
+                "comments": 1,
+                "celebrate": 1,
+                "total_reactions": 49
+              },
+              "author": {
+                "headline": "Go Backend Developer | 3+ yrs Go | Kafka · PostgreSQL · OpenAPI | Ex-Frontend",
+                "username": "zoomish",
+                "last_name": "Rezvyj",
+                "actor_type": "member",
+                "first_name": "Egor",
+                "profile_url": "https://www.linkedin.com/in/zoomish?miniProfileUrn=urn%3Ali%3Afsd_profile%3AACoAAFyCHX4BnOC_2ppnLECIPu9aLaPFq6jXDvY",
+                "profile_picture": "https://media.licdn.com/dms/image/v2/D4E35AQHrSSu7XrRkHA/profile-framedphoto-shrink_800_800/B4EZuhjknJLwAg-/0/1767942015723?e=1793977200&v=beta&t=kVox0cmJt8Y7OP_kkV7f0GNjgRjXAU3QhOiSDEayQpM"
+              },
+              "full_urn": "urn:li:activity:7442035250186293248",
+              "post_type": "regular",
+              "posted_at": {
+                "date": "2026-03-24 03:31:09",
+                "relative": "7 months ago • Visible to anyone on or off LinkedIn",
+                "timestamp": 1774319469973
               }
             },
             {
+              "url": "https://www.linkedin.com/posts/zoomish_activity-7439435416602062848-80z3?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAHB0nHQBL472xlQzJ0jo1KU0fo0rx4C8Lzc",
               "urn": {
-                "activity_urn": "7439435416602062848",
                 "share_urn": "7439435415515750400",
-                "ugcPost_urn": null
-              },
-              "full_urn": "urn:li:activity:7439435416602062848",
-              "posted_at": {
-                "date": "2026-03-16 23:20:21",
-                "relative": "7 months ago • Visible to anyone on or off LinkedIn",
-                "timestamp": 1773699621344
-              },
-              "url": "https://www.linkedin.com/posts/zoomish_activity-7439435416602062848-80z3?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAHBtxR4BG81HmhcEn382uzijexHH70DJBtQ",
-              "post_type": "regular",
-              "author": {
-                "first_name": "Egor",
-                "last_name": "Rezvyj",
-                "headline": "Go Backend Developer | 3+ yrs Go | Kafka · PostgreSQL · OpenAPI | Ex-Frontend",
-                "username": "zoomish",
-                "profile_url": "https://www.linkedin.com/in/zoomish?miniProfileUrn=urn%3Ali%3Afsd_profile%3AACoAAFyCHX4BnOC_2ppnLECIPu9aLaPFq6jXDvY",
-                "profile_picture": "https://media.licdn.com/dms/image/v2/D4E35AQHrSSu7XrRkHA/profile-framedphoto-shrink_800_800/B4EZuhjknJLwAg-/0/1767942015723?e=1793919600&v=beta&t=-0d-JofMlNIkZDP_uBow3MUsOCFLeSGXU3OTT4UdN4E",
-                "actor_type": "member"
-              },
-              "stats": {
-                "total_reactions": 124,
-                "like": 103,
-                "support": 4,
-                "love": 0,
-                "insight": 1,
-                "celebrate": 0,
-                "funny": 16,
-                "curious": 0,
-                "comments": 4,
-                "reposts": 1
+                "ugcPost_urn": null,
+                "activity_urn": "7439435416602062848"
               },
               "media": {
-                "type": "image",
                 "url": "https://media.licdn.com/dms/image/v2/D4D22AQFPxzYV3ynC9w/feedshare-shrink_1280/B4DZz4vF2nHMAM-/0/1773699620509?e=1795046400&v=beta&t=xEeJBzcRBSZcGMw9vN8xgd1MZTjCy1B3wUH0sCOvk2M",
+                "type": "image",
                 "images": [
                   {
                     "url": "https://media.licdn.com/dms/image/v2/D4D22AQFPxzYV3ynC9w/feedshare-shrink_1280/B4DZz4vF2nHMAM-/0/1773699620509?e=1795046400&v=beta&t=xEeJBzcRBSZcGMw9vN8xgd1MZTjCy1B3wUH0sCOvk2M",
@@ -99,230 +69,143 @@
                     "height": 946
                   }
                 ]
+              },
+              "stats": {
+                "like": 103,
+                "love": 0,
+                "funny": 16,
+                "curious": 0,
+                "insight": 1,
+                "reposts": 1,
+                "support": 4,
+                "comments": 4,
+                "celebrate": 0,
+                "total_reactions": 124
+              },
+              "author": {
+                "headline": "Go Backend Developer | 3+ yrs Go | Kafka · PostgreSQL · OpenAPI | Ex-Frontend",
+                "username": "zoomish",
+                "last_name": "Rezvyj",
+                "actor_type": "member",
+                "first_name": "Egor",
+                "profile_url": "https://www.linkedin.com/in/zoomish?miniProfileUrn=urn%3Ali%3Afsd_profile%3AACoAAFyCHX4BnOC_2ppnLECIPu9aLaPFq6jXDvY",
+                "profile_picture": "https://media.licdn.com/dms/image/v2/D4E35AQHrSSu7XrRkHA/profile-framedphoto-shrink_800_800/B4EZuhjknJLwAg-/0/1767942015723?e=1793977200&v=beta&t=kVox0cmJt8Y7OP_kkV7f0GNjgRjXAU3QhOiSDEayQpM"
+              },
+              "full_urn": "urn:li:activity:7439435416602062848",
+              "post_type": "regular",
+              "posted_at": {
+                "date": "2026-03-16 23:20:21",
+                "relative": "7 months ago • Visible to anyone on or off LinkedIn",
+                "timestamp": 1773699621344
               }
             },
             {
+              "url": "https://www.linkedin.com/posts/zoomish_github-devops-ciabrcd-activity-7406759714031669248-wMzJ?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAHB0nHQBL472xlQzJ0jo1KU0fo0rx4C8Lzc",
               "urn": {
-                "activity_urn": "7406759714031669248",
                 "share_urn": null,
-                "ugcPost_urn": "7406759713050124289"
+                "ugcPost_urn": "7406759713050124289",
+                "activity_urn": "7406759714031669248"
+              },
+              "text": "GitHub Actions с 2026: цены на облачные раннеры снижаются, но за свои сервера придется платить платформе 💸\nПолучил письмо от GitHub — меняется тарификация Actions. Разбираю коротко:\nЧто будет:\n✅ С января 2026 цены на GitHub-hosted runners упадут (до -39%)\n❌ С марта 2026 за self-hosted runners введут платформенный сбор — $0.002/мин\nПо факту это значит:\n▪️ 96% пользователей (те, кто на облачных раннерах) действительно сэкономят или не заметят изменений.\n▪️ Но те, кто использует свои сервера (self-hosted) для сборок, — начнут платить GitHub за их использование. Даже если железо ваше.\nВыглядит как мягкий переход на свою экосистему: выгоднее становится работать в их облаке.\nЧто делать?\nПроверить, какие раннеры у вас.\nОценить бюджет через их калькулятор (ссылка в комментарии).\nУспокоиться — время есть до марта 2026.\nА вы используете self-hosted runners? Уже считали, как это ударит по бюджету?\n#GitHub #DevOps #CI_CD #разработка #ИТ",
+              "stats": {
+                "like": 2,
+                "love": 0,
+                "funny": 0,
+                "curious": 0,
+                "insight": 0,
+                "reposts": 0,
+                "support": 0,
+                "comments": 2,
+                "celebrate": 0,
+                "total_reactions": 2
+              },
+              "author": {
+                "headline": "Go Backend Developer | 3+ yrs Go | Kafka · PostgreSQL · OpenAPI | Ex-Frontend",
+                "username": "zoomish",
+                "last_name": "Rezvyj",
+                "actor_type": "member",
+                "first_name": "Egor",
+                "profile_url": "https://www.linkedin.com/in/zoomish?miniProfileUrn=urn%3Ali%3Afsd_profile%3AACoAAFyCHX4BnOC_2ppnLECIPu9aLaPFq6jXDvY",
+                "profile_picture": "https://media.licdn.com/dms/image/v2/D4E35AQHrSSu7XrRkHA/profile-framedphoto-shrink_800_800/B4EZuhjknJLwAg-/0/1767942015723?e=1793977200&v=beta&t=kVox0cmJt8Y7OP_kkV7f0GNjgRjXAU3QhOiSDEayQpM"
               },
               "full_urn": "urn:li:ugcPost:7406759713050124289",
+              "post_type": "regular",
               "posted_at": {
                 "date": "2025-12-16 19:18:46",
                 "relative": "10 months ago • Visible to anyone on or off LinkedIn",
                 "timestamp": 1765909126766
-              },
-              "text": "GitHub Actions с 2026: цены на облачные раннеры снижаются, но за свои сервера придется платить платформе 💸\nПолучил письмо от GitHub — меняется тарификация Actions. Разбираю коротко:\nЧто будет:\n✅ С января 2026 цены на GitHub-hosted runners упадут (до -39%)\n❌ С марта 2026 за self-hosted runners введут платформенный сбор — $0.002/мин\nПо факту это значит:\n▪️ 96% пользователей (те, кто на облачных раннерах) действительно сэкономят или не заметят изменений.\n▪️ Но те, кто использует свои сервера (self-hosted) для сборок, — начнут платить GitHub за их использование. Даже если железо ваше.\nВыглядит как мягкий переход на свою экосистему: выгоднее становится работать в их облаке.\nЧто делать?\nПроверить, какие раннеры у вас.\nОценить бюджет через их калькулятор (ссылка в комментарии).\nУспокоиться — время есть до марта 2026.\nА вы используете self-hosted runners? Уже считали, как это ударит по бюджету?\n#GitHub #DevOps #CI_CD #разработка #ИТ",
-              "url": "https://www.linkedin.com/posts/zoomish_github-devops-ciabrcd-activity-7406759714031669248-wMzJ?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAHBtxR4BG81HmhcEn382uzijexHH70DJBtQ",
-              "post_type": "regular",
-              "author": {
-                "first_name": "Egor",
-                "last_name": "Rezvyj",
-                "headline": "Go Backend Developer | 3+ yrs Go | Kafka · PostgreSQL · OpenAPI | Ex-Frontend",
-                "username": "zoomish",
-                "profile_url": "https://www.linkedin.com/in/zoomish?miniProfileUrn=urn%3Ali%3Afsd_profile%3AACoAAFyCHX4BnOC_2ppnLECIPu9aLaPFq6jXDvY",
-                "profile_picture": "https://media.licdn.com/dms/image/v2/D4E35AQHrSSu7XrRkHA/profile-framedphoto-shrink_800_800/B4EZuhjknJLwAg-/0/1767942015723?e=1793919600&v=beta&t=-0d-JofMlNIkZDP_uBow3MUsOCFLeSGXU3OTT4UdN4E",
-                "actor_type": "member"
-              },
-              "stats": {
-                "total_reactions": 2,
-                "like": 2,
-                "support": 0,
-                "love": 0,
-                "insight": 0,
-                "celebrate": 0,
-                "funny": 0,
-                "curious": 0,
-                "comments": 2,
-                "reposts": 0
               }
             },
             {
+              "url": "https://www.linkedin.com/posts/zoomish_hhru-hrtech-auqaugauwaviaulauwaug-activity-7404941523525455873-WtD8?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAHB0nHQBL472xlQzJ0jo1KU0fo0rx4C8Lzc",
               "urn": {
-                "activity_urn": "7404941523525455873",
                 "share_urn": "7404941522879610883",
-                "ugcPost_urn": null
+                "ugcPost_urn": null,
+                "activity_urn": "7404941523525455873"
+              },
+              "text": "Всем привет! Это мой первый пост здесь! 🎉\nКак разработчик и участник рынка, я внимательно слежу за новостью hh.ru о закрытии соискательского API. Причина — безопасность — бесспорно важна.\n\nНо я не могу не выразить сомнение: решение выглядит асимметричным. Закрывается доступ для инструментов, которые потенциально могли бы помочь кандидатам (например, в управлении своими откликами). При этом аналогичные технологии для работодателей — те же AI-инструменты для автоматического анализа резюме — остаются и развиваются.\n\nПолучается, что борьба с «плохой» автоматизацией (спам-откликами) ведётся за счёт ограничения возможностей для «хорошей» автоматизации со стороны соискателя. Безопасность не должна становиться аргументом для усиления одностороннего контроля.\n\nКак вы думаете, справедлив ли такой подход? Может ли безопасность обеспечиваться одинаково для всех участников рынка?\n\n#hhru #hrtech #карьера #соискатели #рыноктруда #этикатехнологий #первыйпост",
+              "stats": {
+                "like": 4,
+                "love": 0,
+                "funny": 0,
+                "curious": 0,
+                "insight": 0,
+                "reposts": 0,
+                "support": 0,
+                "comments": 2,
+                "celebrate": 0,
+                "total_reactions": 4
+              },
+              "author": {
+                "headline": "Go Backend Developer | 3+ yrs Go | Kafka · PostgreSQL · OpenAPI | Ex-Frontend",
+                "username": "zoomish",
+                "last_name": "Rezvyj",
+                "actor_type": "member",
+                "first_name": "Egor",
+                "profile_url": "https://www.linkedin.com/in/zoomish?miniProfileUrn=urn%3Ali%3Afsd_profile%3AACoAAFyCHX4BnOC_2ppnLECIPu9aLaPFq6jXDvY",
+                "profile_picture": "https://media.licdn.com/dms/image/v2/D4E35AQHrSSu7XrRkHA/profile-framedphoto-shrink_800_800/B4EZuhjknJLwAg-/0/1767942015723?e=1793977200&v=beta&t=kVox0cmJt8Y7OP_kkV7f0GNjgRjXAU3QhOiSDEayQpM"
               },
               "full_urn": "urn:li:activity:7404941523525455873",
+              "post_type": "regular",
               "posted_at": {
                 "date": "2025-12-11 18:53:56",
                 "relative": "10 months ago • Visible to anyone on or off LinkedIn",
                 "timestamp": 1765475636369
-              },
-              "text": "Всем привет! Это мой первый пост здесь! 🎉\nКак разработчик и участник рынка, я внимательно слежу за новостью hh.ru о закрытии соискательского API. Причина — безопасность — бесспорно важна.\n\nНо я не могу не выразить сомнение: решение выглядит асимметричным. Закрывается доступ для инструментов, которые потенциально могли бы помочь кандидатам (например, в управлении своими откликами). При этом аналогичные технологии для работодателей — те же AI-инструменты для автоматического анализа резюме — остаются и развиваются.\n\nПолучается, что борьба с «плохой» автоматизацией (спам-откликами) ведётся за счёт ограничения возможностей для «хорошей» автоматизации со стороны соискателя. Безопасность не должна становиться аргументом для усиления одностороннего контроля.\n\nКак вы думаете, справедлив ли такой подход? Может ли безопасность обеспечиваться одинаково для всех участников рынка?\n\n#hhru #hrtech #карьера #соискатели #рыноктруда #этикатехнологий #первыйпост",
-              "url": "https://www.linkedin.com/posts/zoomish_hhru-hrtech-auqaugauwaviaulauwaug-activity-7404941523525455873-WtD8?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAHBtxR4BG81HmhcEn382uzijexHH70DJBtQ",
-              "post_type": "regular",
-              "author": {
-                "first_name": "Egor",
-                "last_name": "Rezvyj",
-                "headline": "Go Backend Developer | 3+ yrs Go | Kafka · PostgreSQL · OpenAPI | Ex-Frontend",
-                "username": "zoomish",
-                "profile_url": "https://www.linkedin.com/in/zoomish?miniProfileUrn=urn%3Ali%3Afsd_profile%3AACoAAFyCHX4BnOC_2ppnLECIPu9aLaPFq6jXDvY",
-                "profile_picture": "https://media.licdn.com/dms/image/v2/D4E35AQHrSSu7XrRkHA/profile-framedphoto-shrink_800_800/B4EZuhjknJLwAg-/0/1767942015723?e=1793919600&v=beta&t=-0d-JofMlNIkZDP_uBow3MUsOCFLeSGXU3OTT4UdN4E",
-                "actor_type": "member"
-              },
-              "stats": {
-                "total_reactions": 4,
-                "like": 4,
-                "support": 0,
-                "love": 0,
-                "insight": 0,
-                "celebrate": 0,
-                "funny": 0,
-                "curious": 0,
-                "comments": 2,
-                "reposts": 0
               }
             }
           ],
           "pagination_token": "dXJuOmxpOmFjdGl2aXR5Ojc0MDQ5NDE1MjM1MjU0NTU4NzMtMTc2NTQ3NTYzNjM0NQ=="
-        }
+        },
+        "message": "response retrieved successfully",
+        "success": true
       },
       "cached": true
     },
     "details": {
       "data": {
-        "success": true,
-        "message": "response retrieved successfully",
         "data": {
-          "basic_info": {
-            "fullname": "Egor Rezvyj",
-            "first_name": "Egor",
-            "last_name": "Rezvyj",
-            "headline": "Go Backend Developer | 3+ yrs Go | Kafka · PostgreSQL · OpenAPI | Ex-Frontend",
-            "public_identifier": "zoomish",
-            "profile_url": "https://linkedin.com/in/zoomish",
-            "profile_picture_url": "https://media.licdn.com/dms/image/v2/D4E03AQGxIcsHcsdzkA/profile-displayphoto-crop_800_800/B4EZuhjjpDHoAI-/0/1767942014508?e=1795046400&v=beta&t=bmr57i5-L9lt7AKnO2UJd3lrGLmxXJynXBYFP8FydD4",
-            "about": "Go backend developer focused on microservices, gRPC, MySQL/PostgreSQL, Redis, RabbitMQ, and Kubernetes. \n\n3+ years of commercial Go at Lamoda and KVADO. Previously frontend at 2GIS (React/TypeScript); at Lamoda also owned a NestJS BFF alongside Go checkout services. \n\nStrong API design instincts from years of shipping client-facing interfaces and OpenAPI-first backends. \n\nOpen to remote Go backend roles (Middle+).",
-            "location": {
-              "country": "Russia",
-              "city": "Archangel, Arkhangel’sk",
-              "full": "Archangel, Arkhangel’sk, Russia",
-              "postal_code": "",
-              "country_code": "RU"
-            },
-            "creator_hashtags": [],
-            "is_creator": false,
-            "is_influencer": false,
-            "is_premium": false,
-            "open_to_work": true,
-            "created_timestamp": 1751902957762,
-            "show_follower_count": false,
-            "background_picture_url": "https://media.licdn.com/dms/image/v2/D4D16AQEIG2pSk_8A_g/profile-displaybackgroundimage-shrink_350_1400/B4DZrw_aQJJEAY-/0/1764979746861?e=1795046400&v=beta&t=WurOrGHuAJecFnLn0MRmDq3dCDyztA6rGmuJFNIOdLg",
-            "memorialized": false,
-            "is_top_voice": false,
-            "primary_locale": "en_US",
-            "urn": "ACoAAFyCHX4BnOC_2ppnLECIPu9aLaPFq6jXDvY",
-            "follower_count": 1701,
-            "connection_count": 1697,
-            "current_company": "KVADO LLC",
-            "current_company_urn": "90890685",
-            "current_company_url": "https://www.linkedin.com/company/kvado",
-            "current_company_logo_url": "https://media.licdn.com/dms/image/v2/C4D0BAQH75EjaaZJWEA/company-logo_400_400/company-logo_400_400/0/1676111374031?e=1795046400&v=beta&t=B-y_80aXqrjpaeX33KgO1rjpIY0R-YBiEoRO8mtKpms",
-            "top_education_school": {
-              "name": "Northern (Arctic) Federal University",
-              "urn": "",
-              "url": "",
-              "logo_url": ""
-            },
-            "top_skills": [],
-            "email": null
-          },
-          "experience": [
+          "causes": [
+            "Animal Welfare",
+            "Economic Empowerment"
+          ],
+          "education": [
             {
-              "title": "Go Backend Developer",
-              "company": "KVADO LLC",
-              "location": "Russia",
-              "description": "Developed Go backend microservices for a cloud PropTech / utility-billing platform used by management companies across Russia — personal accounts, recurring charges, and B2B APIs for operational clients. \n\nDesigned and shipped gRPC service contracts between billing services, with MySQL as the primary store, Redis for hot-path caching and idempotency keys, and MongoDB for document-oriented payloads where the domain required it. \n\nBuilt asynchronous processing for payment documents on RabbitMQ: retry with backoff, dead-letter queue (DLQ) for poison messages, and consumer idempotency keyed by business identifiers to keep charges consistent under at-least-once delivery. \n\nImproved service observability with Prometheus metrics, Grafana dashboards, and Jaeger traces; supported GitLab CI pipelines and Docker/Kubernetes deployments for staging and production. \n\nOwned unit and integration tests for critical billing paths, participated in code reviews, and maintained technical API documentation for internal consumers.",
-              "duration": "Jul 2024 - Present · 2 yrs 4 mos",
-              "start_date": {
-                "year": 2024,
-                "month": "Jul"
-              },
-              "is_current": true,
-              "company_linkedin_url": "https://www.linkedin.com/company/90890685/",
-              "company_logo_url": "https://media.licdn.com/dms/image/v2/C4D0BAQH75EjaaZJWEA/company-logo_400_400/company-logo_400_400/0/1676111374031?e=1795046400&v=beta&t=B-y_80aXqrjpaeX33KgO1rjpIY0R-YBiEoRO8mtKpms",
-              "employment_type": "Full-time",
-              "location_type": "Remote",
-              "skills": [
-                "Git",
-                "Go (Programming Language)"
-              ],
-              "company_id": "90890685",
-              "skills_url": "https://www.linkedin.com/in/zoomish/overlay/urn:li:fsd_profilePosition:(ACoAAFyCHX4BnOC_2ppnLECIPu9aLaPFq6jXDvY,2676056981)/skill-associations-details?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAFyCHX4BnOC_2ppnLECIPu9aLaPFq6jXDvY"
-            },
-            {
-              "title": "Software Engineer",
-              "company": "Lamoda",
-              "location": "Moscow City, Russia",
-              "description": "Joined the Core / order-processing product team building Go microservices for checkout and customer-order flows used across web, mobile, and internal channels.  Worked specification-first: authored and maintained OpenAPI/Swagger contracts; used the internal Gogi toolchain to generate service boilerplate (routing, validation, logging, metrics) so new endpoints stayed consistent across the Go platform.  Designed and delivered a checkout microservice in Go with PostgreSQL storage, Idempotency-Key handling for safe client retries, and a Kafka event model (e.g. order.created) for downstream notification and fulfillment consumers.  Built and maintained a NestJS (Node.js) BFF layer and React/TypeScript admin UI for operational tooling around checkout and order status — bridging frontend clients and Go domain services.  Wrote Gonkey functional scenario tests for critical order flows; helped cut duplicate order creation under network retries and improve predictability of the checkout path.",
-              "duration": "Jan 2023 - Jun 2024 · 1 yr 6 mos",
-              "start_date": {
-                "year": 2023,
-                "month": "Jan"
-              },
+              "degree": "Бакалавр, Information Tehnologies",
+              "school": "Northern (Arctic) Federal University",
+              "skills": "DevOps, Системное администрирование Linux and +4 skills",
+              "duration": "Sep 2020 - Jun 2024",
               "end_date": {
                 "year": 2024,
                 "month": "Jun"
               },
-              "is_current": false,
-              "company_linkedin_url": "https://www.linkedin.com/company/2003349/",
-              "company_logo_url": "https://media.licdn.com/dms/image/v2/D4D0BAQEmg6_UNillbw/company-logo_400_400/B4DZy4xmeoIwAY-/0/1772626536812/lamodagroup_logo?e=1795046400&v=beta&t=nZxFYupBKkyXMRuA3gZvKz_k9sNF0wTvqe9ZWUZ1Xg0",
-              "employment_type": "Full-time",
-              "location_type": "Remote",
-              "skills": [
-                "Swagger API",
-                "NestJS"
-              ],
-              "company_id": "2003349",
-              "skills_url": "https://www.linkedin.com/in/zoomish/overlay/urn:li:fsd_profilePosition:(ACoAAFyCHX4BnOC_2ppnLECIPu9aLaPFq6jXDvY,2789857779)/skill-associations-details?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAFyCHX4BnOC_2ppnLECIPu9aLaPFq6jXDvY"
-            },
-            {
-              "title": "Frontend Developer",
-              "company": "2GIS",
-              "location": "Russia",
-              "description": "Developed the frontend for a web catalog of organizations in 2GIS Online: company and branch cards, faceted filters, search results, and SPA navigation for high-traffic catalog pages.\n\nEngineered list rendering performance using virtualization for long search result sets, reducing scroll jank by ~60% on dense organization listings without sacrificing interaction quality.\n\nIntegrated REST APIs for geodata and search — wiring pagination, filters, and map-linked catalog states; introduced code-splitting and lazy routes to keep initial load budgets under control.\n\nBuilt and maintained a Jest + React Testing Library suite covering core catalog modules (70%+ coverage on key paths) and collaborated with backend/QA in a product squad of ~7 people.\n\nShipped incremental UX improvements for branch cards and filters that improved perceived responsiveness of the catalog browsing flow.",
-              "duration": "Oct 2019 - Dec 2021 · 2 yrs 3 mos",
-              "start_date": {
-                "year": 2019,
-                "month": "Oct"
-              },
-              "end_date": {
-                "year": 2021,
-                "month": "Dec"
-              },
-              "is_current": false,
-              "company_linkedin_url": "https://www.linkedin.com/company/5047074/",
-              "company_logo_url": "https://media.licdn.com/dms/image/v2/D4E0BAQGTU8yhO6220A/company-logo_400_400/company-logo_400_400/0/1665576413961/2gis_logo?e=1795046400&v=beta&t=0ey1SxDDXlvEtPkg4hgGq8m9Cm7cQbW5adhQXQgcHJU",
-              "employment_type": "Full-time",
-              "location_type": "Remote",
-              "skills": [
-                "Jest",
-                "Git"
-              ],
-              "company_id": "5047074",
-              "skills_url": "https://www.linkedin.com/in/zoomish/overlay/urn:li:fsd_profilePosition:(ACoAAFyCHX4BnOC_2ppnLECIPu9aLaPFq6jXDvY,2789982565)/skill-associations-details?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAFyCHX4BnOC_2ppnLECIPu9aLaPFq6jXDvY"
-            }
-          ],
-          "education": [
-            {
-              "school": "Northern (Arctic) Federal University",
-              "degree": "Бакалавр, Information Tehnologies",
-              "degree_name": "Бакалавр",
-              "field_of_study": "Information Tehnologies",
-              "duration": "Sep 2020 - Jun 2024",
-              "school_linkedin_url": "https://www.linkedin.com/search/results/all/?keywords=Northern+%28Arctic%29+Federal+University",
               "activities": "Научный клуб",
-              "skills": "DevOps, Системное администрирование Linux and +4 skills",
               "start_date": {
                 "year": 2020,
                 "month": "Sep"
               },
-              "end_date": {
-                "year": 2024,
-                "month": "Jun"
-              }
+              "degree_name": "Бакалавр",
+              "field_of_study": "Information Tehnologies",
+              "school_linkedin_url": "https://www.linkedin.com/search/results/all/?keywords=Northern+%28Arctic%29+Federal+University"
             }
           ],
           "languages": [
@@ -335,52 +218,175 @@
               "proficiency": "Native or bilingual proficiency"
             }
           ],
-          "causes": [
-            "Animal Welfare",
-            "Economic Empowerment"
+          "basic_info": {
+            "urn": "ACoAAFyCHX4BnOC_2ppnLECIPu9aLaPFq6jXDvY",
+            "about": "Go backend developer focused on microservices, gRPC, MySQL/PostgreSQL, Redis, RabbitMQ, and Kubernetes. \n\n3+ years of commercial Go at Lamoda and KVADO. Previously frontend at 2GIS (React/TypeScript); at Lamoda also owned a NestJS BFF alongside Go checkout services. \n\nStrong API design instincts from years of shipping client-facing interfaces and OpenAPI-first backends. \n\nOpen to remote Go backend roles (Middle+).",
+            "email": null,
+            "fullname": "Egor Rezvyj",
+            "headline": "Go Backend Developer | 3+ yrs Go | Kafka · PostgreSQL · OpenAPI | Ex-Frontend",
+            "location": {
+              "city": "Archangel, Arkhangel’sk",
+              "full": "Archangel, Arkhangel’sk, Russia",
+              "country": "Russia",
+              "postal_code": "",
+              "country_code": "RU"
+            },
+            "last_name": "Rezvyj",
+            "first_name": "Egor",
+            "is_creator": false,
+            "is_premium": false,
+            "top_skills": [
+              "Go (Programming Language)",
+              "gRPS",
+              "PostgreSQL",
+              "RabbitMQ",
+              "Kubernetes"
+            ],
+            "profile_url": "https://linkedin.com/in/zoomish",
+            "is_top_voice": false,
+            "memorialized": false,
+            "open_to_work": true,
+            "is_influencer": false,
+            "follower_count": 1717,
+            "primary_locale": "en_US",
+            "current_company": "KVADO LLC",
+            "connection_count": 1713,
+            "creator_hashtags": [],
+            "created_timestamp": 1751902957762,
+            "public_identifier": "zoomish",
+            "current_company_url": "https://www.linkedin.com/company/kvado",
+            "current_company_urn": "90890685",
+            "profile_picture_url": "https://media.licdn.com/dms/image/v2/D4E03AQGxIcsHcsdzkA/profile-displayphoto-crop_800_800/B4EZuhjjpDHoAI-/0/1767942014508?e=1795046400&v=beta&t=bmr57i5-L9lt7AKnO2UJd3lrGLmxXJynXBYFP8FydD4",
+            "show_follower_count": false,
+            "top_education_school": {
+              "url": "",
+              "urn": "",
+              "name": "Northern (Arctic) Federal University",
+              "logo_url": ""
+            },
+            "background_picture_url": "https://media.licdn.com/dms/image/v2/D4D16AQEIG2pSk_8A_g/profile-displaybackgroundimage-shrink_350_1400/B4DZrw_aQJJEAY-/0/1764979746861?e=1795046400&v=beta&t=WurOrGHuAJecFnLn0MRmDq3dCDyztA6rGmuJFNIOdLg",
+            "current_company_logo_url": "https://media.licdn.com/dms/image/v2/C4D0BAQH75EjaaZJWEA/company-logo_400_400/company-logo_400_400/0/1676111374031?e=1795046400&v=beta&t=B-y_80aXqrjpaeX33KgO1rjpIY0R-YBiEoRO8mtKpms"
+          },
+          "experience": [
+            {
+              "title": "Go Backend Developer",
+              "skills": [
+                "Git",
+                "Go (Programming Language)"
+              ],
+              "company": "KVADO LLC",
+              "duration": "Jul 2024 - Present · 2 yrs 4 mos",
+              "location": "Russia",
+              "company_id": "90890685",
+              "is_current": true,
+              "skills_url": "https://www.linkedin.com/in/zoomish/overlay/urn:li:fsd_profilePosition:(ACoAAFyCHX4BnOC_2ppnLECIPu9aLaPFq6jXDvY,2676056981)/skill-associations-details?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAFyCHX4BnOC_2ppnLECIPu9aLaPFq6jXDvY",
+              "start_date": {
+                "year": 2024,
+                "month": "Jul"
+              },
+              "description": "Developed Go backend microservices for a cloud PropTech / utility-billing platform used by management companies across Russia — personal accounts, recurring charges, and B2B APIs for operational clients. \n\nDesigned and shipped gRPC service contracts between billing services, with MySQL as the primary store, Redis for hot-path caching and idempotency keys, and MongoDB for document-oriented payloads where the domain required it. \n\nBuilt asynchronous processing for payment documents on RabbitMQ: retry with backoff, dead-letter queue (DLQ) for poison messages, and consumer idempotency keyed by business identifiers to keep charges consistent under at-least-once delivery. \n\nImproved service observability with Prometheus metrics, Grafana dashboards, and Jaeger traces; supported GitLab CI pipelines and Docker/Kubernetes deployments for staging and production. \n\nOwned unit and integration tests for critical billing paths, participated in code reviews, and maintained technical API documentation for internal consumers.",
+              "location_type": "Remote",
+              "employment_type": "Full-time",
+              "company_logo_url": "https://media.licdn.com/dms/image/v2/C4D0BAQH75EjaaZJWEA/company-logo_400_400/company-logo_400_400/0/1676111374031?e=1795046400&v=beta&t=B-y_80aXqrjpaeX33KgO1rjpIY0R-YBiEoRO8mtKpms",
+              "company_linkedin_url": "https://www.linkedin.com/company/90890685/"
+            },
+            {
+              "title": "Software Engineer",
+              "skills": [
+                "Swagger API",
+                "NestJS"
+              ],
+              "company": "Lamoda",
+              "duration": "Jan 2023 - Jun 2024 · 1 yr 6 mos",
+              "end_date": {
+                "year": 2024,
+                "month": "Jun"
+              },
+              "location": "Moscow City, Russia",
+              "company_id": "2003349",
+              "is_current": false,
+              "skills_url": "https://www.linkedin.com/in/zoomish/overlay/urn:li:fsd_profilePosition:(ACoAAFyCHX4BnOC_2ppnLECIPu9aLaPFq6jXDvY,2789857779)/skill-associations-details?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAFyCHX4BnOC_2ppnLECIPu9aLaPFq6jXDvY",
+              "start_date": {
+                "year": 2023,
+                "month": "Jan"
+              },
+              "description": "Joined the Core / order-processing product team building Go microservices for checkout and customer-order flows used across web, mobile, and internal channels.  Worked specification-first: authored and maintained OpenAPI/Swagger contracts; used the internal Gogi toolchain to generate service boilerplate (routing, validation, logging, metrics) so new endpoints stayed consistent across the Go platform.  Designed and delivered a checkout microservice in Go with PostgreSQL storage, Idempotency-Key handling for safe client retries, and a Kafka event model (e.g. order.created) for downstream notification and fulfillment consumers.  Built and maintained a NestJS (Node.js) BFF layer and React/TypeScript admin UI for operational tooling around checkout and order status — bridging frontend clients and Go domain services.  Wrote Gonkey functional scenario tests for critical order flows; helped cut duplicate order creation under network retries and improve predictability of the checkout path.",
+              "location_type": "Remote",
+              "employment_type": "Full-time",
+              "company_logo_url": "https://media.licdn.com/dms/image/v2/D4D0BAQEmg6_UNillbw/company-logo_400_400/B4DZy4xmeoIwAY-/0/1772626536812/lamodagroup_logo?e=1795046400&v=beta&t=nZxFYupBKkyXMRuA3gZvKz_k9sNF0wTvqe9ZWUZ1Xg0",
+              "company_linkedin_url": "https://www.linkedin.com/company/2003349/"
+            },
+            {
+              "title": "Frontend Developer",
+              "skills": [
+                "Jest",
+                "Git"
+              ],
+              "company": "2GIS",
+              "duration": "Oct 2019 - Dec 2021 · 2 yrs 3 mos",
+              "end_date": {
+                "year": 2021,
+                "month": "Dec"
+              },
+              "location": "Russia",
+              "company_id": "5047074",
+              "is_current": false,
+              "skills_url": "https://www.linkedin.com/in/zoomish/overlay/urn:li:fsd_profilePosition:(ACoAAFyCHX4BnOC_2ppnLECIPu9aLaPFq6jXDvY,2789982565)/skill-associations-details?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAFyCHX4BnOC_2ppnLECIPu9aLaPFq6jXDvY",
+              "start_date": {
+                "year": 2019,
+                "month": "Oct"
+              },
+              "description": "Developed the frontend for a web catalog of organizations in 2GIS Online: company and branch cards, faceted filters, search results, and SPA navigation for high-traffic catalog pages.\n\nEngineered list rendering performance using virtualization for long search result sets, reducing scroll jank by ~60% on dense organization listings without sacrificing interaction quality.\n\nIntegrated REST APIs for geodata and search — wiring pagination, filters, and map-linked catalog states; introduced code-splitting and lazy routes to keep initial load budgets under control.\n\nBuilt and maintained a Jest + React Testing Library suite covering core catalog modules (70%+ coverage on key paths) and collaborated with backend/QA in a product squad of ~7 people.\n\nShipped incremental UX improvements for branch cards and filters that improved perceived responsiveness of the catalog browsing flow.",
+              "location_type": "Remote",
+              "employment_type": "Full-time",
+              "company_logo_url": "https://media.licdn.com/dms/image/v2/D4E0BAQGTU8yhO6220A/company-logo_400_400/company-logo_400_400/0/1665576413961/2gis_logo?e=1795046400&v=beta&t=0ey1SxDDXlvEtPkg4hgGq8m9Cm7cQbW5adhQXQgcHJU",
+              "company_linkedin_url": "https://www.linkedin.com/company/5047074/"
+            }
           ]
-        }
+        },
+        "message": "response retrieved successfully",
+        "success": true
       },
       "cached": true
     },
     "contact": {
       "data": {
-        "success": true,
-        "message": "response retrieved successfully",
         "data": {
-          "basic_info": {
-            "urn": "ACoAAFyCHX4BnOC_2ppnLECIPu9aLaPFq6jXDvY",
-            "first_name": "Egor",
-            "last_name": "Rezvyj",
-            "full_name": "Egor Rezvyj",
-            "headline": "Go Backend Developer | 3+ yrs Go | Kafka · PostgreSQL · OpenAPI | Ex-Frontend",
-            "public_identifier": "zoomish",
-            "profile_url": "https://www.linkedin.com/in/zoomish"
-          },
           "email": null,
-          "phone_numbers": [],
+          "wechat": null,
+          "address": null,
+          "birthday": {
+            "day": 29,
+            "year": null,
+            "month": 10
+          },
           "websites": [
             {
               "url": "https://zoomish-portfolio.vercel.app",
-              "category": "PORTFOLIO",
-              "label": null
+              "label": null,
+              "category": "PORTFOLIO"
             },
             {
               "url": "https://t.me/ZoomishWork",
-              "category": "OTHER",
-              "label": null
+              "label": null,
+              "category": "OTHER"
             }
           ],
-          "birthday": {
-            "month": 10,
-            "day": 29,
-            "year": null
+          "basic_info": {
+            "urn": "ACoAAFyCHX4BnOC_2ppnLECIPu9aLaPFq6jXDvY",
+            "headline": "Go Backend Developer | 3+ yrs Go | Kafka · PostgreSQL · OpenAPI | Ex-Frontend",
+            "full_name": "Egor Rezvyj",
+            "last_name": "Rezvyj",
+            "first_name": "Egor",
+            "profile_url": "https://www.linkedin.com/in/zoomish",
+            "public_identifier": "zoomish"
           },
-          "address": null,
+          "phone_numbers": [],
           "twitter_handles": [],
-          "wechat": null,
           "instant_messengers": []
-        }
+        },
+        "message": "response retrieved successfully",
+        "success": true
       },
       "cached": true
     }
@@ -388,31 +394,58 @@
   "github": {
     "data": [
       {
-        "name": "UAVLocator",
-        "description": "Russian Drone Locator - Telegram notification bot for UAV threats  Real-time monitoring and alert system for unmanned aerial vehicle (UAV/drone) threats across Russian regions",
+        "url": "https://github.com/Zoomish/PrivateChannels_Gate",
+        "link": null,
+        "name": "PrivateChannels_Gate",
+        "forks": 0,
+        "stars": 0,
+        "language": "Go",
+        "description": ""
+      },
+      {
+        "url": "https://github.com/Zoomish/PrivateChannels_Server",
+        "link": null,
+        "name": "PrivateChannels_Server",
+        "forks": 0,
+        "stars": 0,
+        "language": "Go",
+        "description": ""
+      },
+      {
+        "url": "https://github.com/Zoomish/ActivityHelper",
+        "link": null,
+        "name": "ActivityHelper",
+        "forks": 0,
+        "stars": 0,
         "language": "TypeScript",
+        "description": ""
+      },
+      {
         "url": "https://github.com/Zoomish/UAVLocator",
         "link": "https://t.me/LocatorRFBot",
+        "name": "UAVLocator",
+        "forks": 1,
         "stars": 0,
-        "forks": 1
+        "language": "TypeScript",
+        "description": "Russian Drone Locator - Telegram notification bot for UAV threats  Real-time monitoring and alert system for unmanned aerial vehicle (UAV/drone) threats across Russian regions"
       },
       {
-        "name": "sqlwhere",
-        "description": "Parameterized WHERE / ORDER BY / LIMIT on SQL you already wrote. sqlc companion, not an ORM",
-        "language": "Go",
-        "url": "https://github.com/Zoomish/sqlwhere",
-        "link": "https://pkg.go.dev/github.com/Zoomish/sqlwhere",
-        "stars": 1,
-        "forks": 0
+        "url": "https://github.com/Zoomish/Interview-Assistant",
+        "link": "https://t.me/ZoomishHRBot",
+        "name": "Interview-Assistant",
+        "forks": 0,
+        "stars": 0,
+        "language": "TypeScript",
+        "description": "A Telegram bot built with Nest.js and node-telegram-bot-api, integrated with AI to help users prepare for job interviews and improve their theoretical knowledge through profession-specific and skill-based questions."
       },
       {
-        "name": "go-hhru-api",
-        "description": "Go client for the HeadHunter (hh.ru) API — OpenAPI-generated types, OAuth-ready transport, retries.",
-        "language": "Go",
-        "url": "https://github.com/Zoomish/go-hhru-api",
-        "link": "https://pkg.go.dev/github.com/Zoomish/go-hhru-api",
-        "stars": 1,
-        "forks": 0
+        "url": "https://github.com/Zoomish/node-hhru-api",
+        "link": "https://www.npmjs.com/package/node-hhru-api",
+        "name": "node-hhru-api",
+        "forks": 0,
+        "stars": 0,
+        "language": "TypeScript",
+        "description": "A lightweight TypeScript/JavaScript SDK for HeadHunter API"
       }
     ],
     "cached": true

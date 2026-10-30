@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const outFile = resolve(root, 'src/generated/site-content.json');
-const api = 'https://portfolio-backend-3fya.onrender.com/api';
+const api = 'https://portfolio-backend-107i.onrender.com/api';
 const timeoutMs = 60_000;
 
 const getJson = async (path: string): Promise<unknown> => {
