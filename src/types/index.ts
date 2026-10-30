@@ -88,8 +88,15 @@ export interface LinkedInExperience {
   is_current: boolean;
   company_linkedin_url?: string;
   company_logo_url?: string;
+  company_id?: string;
   employment_type?: string;
   location_type?: string;
+  skills?: string[];
+}
+
+export interface LinkedInLanguage {
+  language: string;
+  proficiency: string;
 }
 
 export interface LinkedInEducation {
@@ -134,7 +141,7 @@ export interface LinkedInProfileResponse {
     basic_info: LinkedInBasicInfo;
     experience: LinkedInExperience[];
     education: LinkedInEducation[];
-    languages: { language: string; proficiency: string }[];
+    languages: LinkedInLanguage[];
   };
 }
 

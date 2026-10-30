@@ -154,14 +154,14 @@ export const buildStaticSeoHtml = (config: SeoConfig): string => {
     ? `<p>Telegram: <a href="${config.telegramUrl}">${config.telegramUrl}</a></p>`
     : '';
 
-  return `<main id="static-seo" aria-label="${config.brandName} portfolio">
+  return `<main id="static-seo" aria-label="Портфолио ${config.brandName}">
   <h1>${config.brandName} — ${config.personName}</h1>
   <p>${config.jobTitle}</p>
   <p>${config.description}</p>
   <p>GitHub: <a href="${config.githubUrl}">${config.githubUrl}</a></p>
   ${linkedinBlock}
   ${telegramBlock}
-  <p>Email: <a href="mailto:${config.email}">${config.email}</a></p>
+  <p>Почта: <a href="mailto:${config.email}">${config.email}</a></p>
 </main>`;
 };
 

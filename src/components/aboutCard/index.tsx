@@ -16,11 +16,11 @@ const AboutCard: React.FC<Props> = ({ about, loading }) => {
             {loading ? (
               skeleton({ widthCls: 'w-24', heightCls: 'h-8' })
             ) : (
-              <span className="text-base-content opacity-70">About Me</span>
+              <span className="text-base-content opacity-70">Обо мне</span>
             )}
           </h5>
         </div>
-        <div className="mx-3 text-sm text-base-content opacity-60 leading-relaxed">
+        <div className="mx-3 text-base leading-relaxed text-base-content text-opacity-80">
           {loading ? (
             <div className="space-y-2">
               {skeleton({ widthCls: 'w-full', heightCls: 'h-4' })}

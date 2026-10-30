@@ -48,7 +48,7 @@ export const APP_CONFIG = {
   },
 
   externalProjects: {
-    header: 'My Projects',
+    header: 'Проекты',
     projects: [] as ExternalProject[],
   },
 
@@ -103,7 +103,7 @@ export const APP_CONFIG = {
     },
   } as ThemeConfig,
 
-  footer: 'Made by Zoomish',
+  footer: 'Сделано Zoomish',
 
   enablePWA: true,
 } as const;

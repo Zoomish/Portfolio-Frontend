@@ -1,4 +1,5 @@
 import { formatDistance } from 'date-fns';
+import { ru } from 'date-fns/locale';
 import { AiOutlineContainer } from 'react-icons/ai';
 import { FaComment, FaHeart, FaLinkedin, FaShare } from 'react-icons/fa';
 import type { LinkedInPost } from '../../types';
@@ -7,6 +8,7 @@ import { skeleton } from '../../utils';
 interface Props {
   posts: LinkedInPost[];
   loading: boolean;
+  profileUrl?: string;
 }
 
 function getPostImageUrls(post: LinkedInPost): string[] {
@@ -18,10 +20,6 @@ function getPostImageUrls(post: LinkedInPost): string[] {
 }
 
 const PostCard: React.FC<{ post: LinkedInPost }> = ({ post }) => {
-  const truncated =
-    post.text && post.text.length > 280
-      ? post.text.slice(0, 280) + '…'
-      : post.text;
   const postedDate = new Date(post.posted_at.date);
   const imageUrls = getPostImageUrls(post);
   const hasText = Boolean(post.text?.trim());
@@ -31,7 +29,7 @@ const PostCard: React.FC<{ post: LinkedInPost }> = ({ post }) => {
       href={post.url}
       target="_blank"
       rel="noreferrer"
-      className="card shadow-lg compact bg-base-100 cursor-pointer hover:shadow-xl transition-shadow"
+      className="card shadow-lg compact bg-base-100 h-full cursor-pointer hover:shadow-xl transition-shadow"
     >
       <div className="p-6">
         <div className="flex items-center gap-3 mb-3">
@@ -48,7 +46,10 @@ const PostCard: React.FC<{ post: LinkedInPost }> = ({ post }) => {
               {post.author.first_name} {post.author.last_name}
             </p>
             <p className="text-xs text-base-content opacity-40">
-              {formatDistance(postedDate, new Date(), { addSuffix: true })}
+              {formatDistance(postedDate, new Date(), {
+                addSuffix: true,
+                locale: ru,
+              })}
             </p>
           </div>
           <FaLinkedin
@@ -58,8 +59,8 @@ const PostCard: React.FC<{ post: LinkedInPost }> = ({ post }) => {
         </div>
 
         {hasText ? (
-          <p className="text-sm text-base-content opacity-60 leading-relaxed whitespace-pre-wrap">
-            {truncated}
+          <p className="text-base leading-relaxed whitespace-pre-wrap line-clamp-4 text-base-content text-opacity-80">
+            {post.text}
           </p>
         ) : null}
 
@@ -71,7 +72,7 @@ const PostCard: React.FC<{ post: LinkedInPost }> = ({ post }) => {
               <img
                 key={`${post.full_urn}-img-${idx}`}
                 src={src}
-                alt={`Publication image — ${post.author.first_name} ${post.author.last_name}`}
+                alt={`Изображение публикации — ${post.author.first_name} ${post.author.last_name}`}
                 loading="lazy"
                 className="w-full max-h-80 rounded-lg object-contain bg-base-200"
                 onError={(e) => {
@@ -100,9 +101,17 @@ const PostCard: React.FC<{ post: LinkedInPost }> = ({ post }) => {
   );
 };
 
-const PublicationsCard: React.FC<Props> = ({ posts, loading }) => {
+const PublicationsCard: React.FC<Props> = ({ posts, loading, profileUrl }) => {
+  const latest = [...(posts ?? [])]
+    .sort(
+      (left, right) =>
+        (right.posted_at?.timestamp ?? 0) - (left.posted_at?.timestamp ?? 0),
+    )
+    .slice(0, 2);
+  const hasMore = (posts?.length ?? 0) > latest.length;
+
   return (
-    <div className="col-span-1 lg:col-span-2">
+    <div>
       <div
         className={`card compact bg-base-100 ${
           loading || posts?.length ? 'shadow bg-opacity-40' : 'shadow-lg'
@@ -111,10 +120,10 @@ const PublicationsCard: React.FC<Props> = ({ posts, loading }) => {
         <div className="card-body">
           <div className="mx-3 mb-2">
             <h5 className="card-title">
-              <span className="text-base-content opacity-70">Publications</span>
+              <span className="text-base-content opacity-70">Публикации</span>
             </h5>
           </div>
-          <div className="grid grid-cols-1 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {loading ? (
               Array.from({ length: 3 }).map((_, i) => (
                 <div key={i} className="card shadow compact bg-base-100 p-6">
@@ -136,17 +145,27 @@ const PublicationsCard: React.FC<Props> = ({ posts, loading }) => {
                   </div>
                 </div>
               ))
-            ) : posts?.length > 0 ? (
-              posts.map((post) => <PostCard key={post.full_urn} post={post} />)
+            ) : latest.length > 0 ? (
+              latest.map((post) => <PostCard key={post.full_urn} post={post} />)
             ) : (
               <div className="text-center mb-6">
                 <AiOutlineContainer className="mx-auto h-12 w-12 opacity-30" />
                 <p className="mt-1 text-sm opacity-50 text-base-content">
-                  No publications yet
+                  Пока нет публикаций
                 </p>
               </div>
             )}
           </div>
+          {!loading && hasMore && profileUrl ? (
+            <a
+              href={profileUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="mx-3 mt-2 inline-flex items-center gap-1 text-sm opacity-70 hover:opacity-100"
+            >
+              <FaLinkedin /> Все публикации
+            </a>
+          ) : null}
         </div>
       </div>
     </div>

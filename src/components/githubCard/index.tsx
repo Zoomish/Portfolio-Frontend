@@ -1,11 +1,11 @@
 import {
-  FaStar,
-  FaCodeBranch,
-  FaGithub,
-  FaExternalLinkAlt,
+    FaCodeBranch,
+    FaExternalLinkAlt,
+    FaGithub,
+    FaStar,
 } from 'react-icons/fa';
-import { skeleton } from '../../utils';
 import type { FilteredRepo } from '../../types';
+import { skeleton } from '../../utils';
 
 const languageColors: Record<string, string> = {
   TypeScript: 'text-blue-400',
@@ -35,7 +35,7 @@ const RepoCard: React.FC<{ repo: FilteredRepo }> = ({ repo }) => (
               target="_blank"
               rel="noreferrer"
               className="text-base-content opacity-40 hover:opacity-80 transition-opacity"
-              title="Live demo"
+              title="Демо"
             >
               <FaExternalLinkAlt size={12} />
             </a>
@@ -45,7 +45,7 @@ const RepoCard: React.FC<{ repo: FilteredRepo }> = ({ repo }) => (
             target="_blank"
             rel="noreferrer"
             className="text-base-content opacity-40 hover:opacity-80 transition-opacity"
-            title="View on GitHub"
+            title="Открыть на GitHub"
           >
             <FaGithub size={14} />
           </a>
@@ -53,7 +53,7 @@ const RepoCard: React.FC<{ repo: FilteredRepo }> = ({ repo }) => (
       </div>
 
       <p className="text-xs text-base-content opacity-50 flex-1 mb-3 leading-relaxed line-clamp-3">
-        {repo.description || 'No description provided.'}
+        {repo.description || 'Нет описания'}
       </p>
 
       <div className="flex items-center gap-3 mt-auto flex-wrap">
@@ -81,16 +81,15 @@ const RepoCard: React.FC<{ repo: FilteredRepo }> = ({ repo }) => (
 
 const GithubCard: React.FC<Props> = ({ repos, loading }) => {
   const safeRepos = Array.isArray(repos) ? repos : [];
-  const sortedRepos = [...safeRepos].sort((a, b) => b.stars - a.stars);
 
   return (
-    <div className="col-span-1 lg:col-span-2">
+    <div>
       <div className="card compact shadow bg-base-100 bg-opacity-40">
         <div className="card-body">
           <div className="mx-3 mb-2">
             <h5 className="card-title">
               <span className="text-base-content opacity-70">
-                Github Projects
+                Проекты GitHub
               </span>
             </h5>
           </div>
@@ -112,7 +111,7 @@ const GithubCard: React.FC<Props> = ({ repos, loading }) => {
                     </div>
                   </div>
                 ))
-              : sortedRepos.map((repo) => (
+              : safeRepos.map((repo) => (
                   <RepoCard key={repo.name} repo={repo} />
                 ))}
           </div>

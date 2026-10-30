@@ -3,7 +3,6 @@ import { HelmetProvider } from 'react-helmet-async';
 import { hotjar } from 'react-hotjar';
 import AboutCard from './components/aboutCard';
 import AvatarCard from './components/avatarCard';
-import DetailsCard from './components/detailsCard';
 import EducationCard from './components/educationCard';
 import ExperienceCard from './components/experienceCard';
 import ExternalProjectCard from './components/externalProjectCard';
@@ -81,53 +80,42 @@ function App() {
 
   return (
     <HelmetProvider>
-      <div className="fade-in h-screen">
+      <div className="fade-in min-h-screen">
         <HeadTagEditor appliedTheme={theme} />
         <div className={`p-4 lg:p-10 min-h-full ${BG_COLOR}`}>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 rounded-box">
-            {/* ── Left sidebar ───────────────────────────────────── */}
-            <div className="col-span-1">
-              <div className="grid grid-cols-1 gap-6">
-                {/* {!themeConfig.disableSwitch && (
-                  <ThemeChanger
-                    theme={theme}
-                    setTheme={setTheme}
-                    loading={loading}
-                    themeConfig={themeConfig}
-                  />
-                )} */}
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 items-start">
+            <div className="col-span-1 lg:col-span-2 lg:sticky lg:top-6 lg:self-start">
+              <div className="grid grid-cols-1 gap-3">
                 <AvatarCard
-                  profile={profile}
-                  loading={loading}
-                  avatarRing={themeConfig.displayAvatarRing}
-                  resumeFileUrl={APP_CONFIG.resume.fileUrl}
-                />
-                <DetailsCard
                   profile={profile}
                   contact={contactData}
                   loading={loading}
+                  avatarRing={themeConfig.displayAvatarRing}
+                  resumeFileUrl={APP_CONFIG.resume.fileUrl}
                   githubUsername={APP_CONFIG.github.username}
                   fallbackEmail={APP_CONFIG.social.email}
                 />
-                {(loading || skills?.length > 0) && (
+                {(loading || skills.length > 0) && (
                   <SkillCard loading={loading} skills={skills} />
                 )}
-                {(loading || experience?.length > 0) && (
-                  <ExperienceCard loading={loading} experiences={experience} />
-                )}
-                {(loading || education?.length > 0) && (
+                <AboutCard about={profile?.about ?? null} loading={loading} />
+                {(loading || education.length > 0) && (
                   <EducationCard loading={loading} educations={education} />
                 )}
               </div>
             </div>
-
-            {/* ── Main content ───────────────────────────────────── */}
-            <div className="lg:col-span-2 col-span-1">
-              <div className="grid grid-cols-1 gap-6">
+            <div className="col-span-1 lg:col-span-3">
+              <div className="grid grid-cols-1 gap-6 items-start">
+                {(loading || experience.length > 0) && (
+                  <ExperienceCard loading={loading} experiences={experience} />
+                )}
                 <GithubCard repos={repos} loading={loading} />
-                <AboutCard about={profile?.about ?? null} loading={loading} />
                 {posts.length > 0 ? (
-                  <PublicationsCard posts={posts} loading={loading} />
+                  <PublicationsCard
+                    posts={posts}
+                    loading={loading}
+                    profileUrl={profile?.profile_url}
+                  />
                 ) : null}
                 {externalProjects.projects?.length > 0 && (
                   <ExternalProjectCard
