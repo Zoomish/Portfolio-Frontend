@@ -60,7 +60,7 @@ const ListItem = ({
             className="w-12 h-12 rounded-md object-contain shrink-0"
           />
         ) : null}
-        <div className="min-w-0 text-opacity-100">
+        <div className="min-w-0">
           <h3 className="text-base font-semibold text-base-content">{position}</h3>
           {(company || employmentType) && (
             <div className="text-sm text-base-content text-opacity-80">
@@ -72,41 +72,41 @@ const ListItem = ({
           {place && (
             <div className="text-sm text-base-content text-opacity-60">{place}</div>
           )}
-          {visible.length > 0 && (
-            <div className="mt-2 space-y-2 text-base leading-relaxed whitespace-pre-line text-base-content text-opacity-80">
-              {visible.map((paragraph, index) => (
-                <p
-                  key={index}
-                  className={!open && index === 0 ? 'line-clamp-4' : ''}
-                >
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          )}
-          {canToggle && (
-            <button
-              type="button"
-              className="mt-1 text-sm font-medium text-base-content text-opacity-70 hover:text-opacity-100"
-              onClick={() => setOpen((value) => !value)}
-            >
-              {open ? 'Скрыть' : 'Ещё'}
-            </button>
-          )}
-          {chips.length > 0 && (
-            <div className="mt-2 flex flex-wrap gap-1">
-              {chips.map((skill) => (
-                <span
-                  key={skill}
-                  className="text-xs inline-flex items-center font-bold leading-sm px-3 py-1 badge-primary bg-opacity-90 rounded-full"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          )}
         </div>
       </div>
+      {visible.length > 0 && (
+        <div className="mt-2 space-y-2 text-base leading-relaxed whitespace-pre-line text-base-content text-opacity-80">
+          {visible.map((paragraph, index) => (
+            <p
+              key={index}
+              className={!open && index === 0 ? 'line-clamp-4' : ''}
+            >
+              {paragraph}
+            </p>
+          ))}
+        </div>
+      )}
+      {canToggle && (
+        <button
+          type="button"
+          className="mt-1 text-sm font-medium text-base-content text-opacity-70 hover:text-opacity-100"
+          onClick={() => setOpen((value) => !value)}
+        >
+          {open ? 'Скрыть' : 'Ещё'}
+        </button>
+      )}
+      {chips.length > 0 && (
+        <div className="mt-2 flex flex-wrap gap-1">
+          {chips.map((skill) => (
+            <span
+              key={skill}
+              className="text-xs inline-flex items-center font-bold leading-sm px-3 py-1 badge-primary bg-opacity-90 rounded-full"
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
+      )}
     </li>
   );
 };

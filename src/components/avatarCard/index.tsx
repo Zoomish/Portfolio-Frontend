@@ -98,13 +98,18 @@ const AvatarCard: React.FC<AvatarCardProps> = ({
                 />
               </div>
               {profile.open_to_work && (
-                <span className="badge badge-success badge-sm font-bold text-white absolute -top-1 -right-16 z-10">
+                <span className="badge badge-success badge-sm font-bold text-white absolute -top-1 -right-16 z-10 hidden sm:inline-flex">
                   #Open to Work
                 </span>
               )}
             </div>
           )}
           <div className="min-w-0 text-left">
+            {!loading && profile?.open_to_work && (
+              <span className="badge badge-success badge-sm font-bold text-white mb-1 sm:hidden">
+                #Open to Work
+              </span>
+            )}
             <h5 className="font-bold text-2xl">
               {loading || !profile ? (
                 skeleton({ widthCls: 'w-40', heightCls: 'h-8' })
