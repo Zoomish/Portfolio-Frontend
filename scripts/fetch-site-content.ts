@@ -53,15 +53,22 @@ const writeOptimized = async (
     .webp({ quality: 80 })
     .toBuffer();
 
+  const legacyExt = baseName === 'avatar' ? '.png' : '.jpg';
+  const legacy =
+    legacyExt === '.png'
+      ? await sharp(optimized).png().toBuffer()
+      : await sharp(optimized).jpeg({ quality: 80 }).toBuffer();
+
   mkdirSync(publicDir, { recursive: true });
 
   for (const stale of imageExtensions) {
-    if (stale === '.webp') continue;
+    if (stale === '.webp' || stale === legacyExt) continue;
     const stalePath = resolve(publicDir, `${baseName}${stale}`);
     if (existsSync(stalePath)) unlinkSync(stalePath);
   }
 
   writeFileSync(resolve(publicDir, `${baseName}.webp`), optimized);
+  writeFileSync(resolve(publicDir, `${baseName}${legacyExt}`), legacy);
   return `/generated/${baseName}.webp`;
 };
 

@@ -3,10 +3,18 @@
   "name": "Zoomish Portfolio",
   "description": "Egor Rezvyj (Zoomish), Go backend developer. 3+ years of commercial Go: microservices, Kafka, PostgreSQL, gRPC, OpenAPI. Previously frontend. Open to remote Middle+ roles.",
   "author": "Zoomish",
-  "icons": {
-    "16": "favicon-16x16.png",
-    "32": "favicon-32x32.png"
-  },
+  "icons": [
+    {
+      "src": "favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    }
+  ],
   "display": "standalone",
   "background_color": "#45ff61",
   "theme_color": "#45ff61",
