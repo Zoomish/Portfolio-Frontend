@@ -120,7 +120,7 @@ const ExternalProjectCard = ({
             <div className="card compact bg-base-100 shadow bg-opacity-40">
               <div className="card-body">
                 <div className="mx-3 flex items-center justify-between mb-2">
-                  <h5 className="card-title">
+                  <h2 className="card-title">
                     {loading ? (
                       skeleton({ widthCls: 'w-40', heightCls: 'h-8' })
                     ) : (
@@ -128,7 +128,7 @@ const ExternalProjectCard = ({
                         {header}
                       </span>
                     )}
-                  </h5>
+                  </h2>
                 </div>
                 <div className="col-span-2">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

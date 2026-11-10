@@ -1,7 +1,7 @@
 import { MouseEvent } from 'react';
 import { AiOutlineControl } from 'react-icons/ai';
-import { LOCAL_STORAGE_KEY_NAME } from '../../constants';
 import type { ThemeConfig } from '../../config/app.config';
+import { LOCAL_STORAGE_KEY_NAME } from '../../constants';
 import { skeleton } from '../../utils';
 
 const ThemeChanger = ({
@@ -29,7 +29,7 @@ const ThemeChanger = ({
     <div className="card overflow-visible shadow-lg compact bg-base-100">
       <div className="flex-row items-center space-x-4 flex pl-6 pr-2 py-4">
         <div className="flex-1">
-          <h5 className="card-title">
+          <h2 className="card-title">
             {loading ? (
               skeleton({
                 widthCls: 'w-20',
@@ -39,7 +39,7 @@ const ThemeChanger = ({
             ) : (
               <span className="text-base-content opacity-70">Theme</span>
             )}
-          </h5>
+          </h2>
           <span className="text-base-content text-opacity-40 capitalize text-sm">
             {loading
               ? skeleton({ widthCls: 'w-16', heightCls: 'h-5' })

@@ -9,19 +9,31 @@ interface Props {
   posts: LinkedInPost[];
   loading: boolean;
   profileUrl?: string;
+  authorAvatar?: string;
 }
 
-function getPostImageUrls(post: LinkedInPost): string[] {
+function getPostImages(post: LinkedInPost) {
   const { media } = post;
   if (!media || media.type !== 'image') return [];
-  const fromImages = media.images?.map((img) => img.url).filter(Boolean) ?? [];
-  if (fromImages.length > 0) return fromImages;
-  return media.url ? [media.url] : [];
+
+  const fromImages = (media.images ?? []).filter((img) => img.url);
+  if (fromImages.length > 0) {
+    return fromImages.map((img) => ({
+      url: img.url,
+      width: img.width || 1200,
+      height: img.height || 800,
+    }));
+  }
+
+  return media.url ? [{ url: media.url, width: 1200, height: 800 }] : [];
 }
 
-const PostCard: React.FC<{ post: LinkedInPost }> = ({ post }) => {
+const PostCard: React.FC<{ post: LinkedInPost; authorAvatar?: string }> = ({
+  post,
+  authorAvatar,
+}) => {
   const postedDate = new Date(post.posted_at.date);
-  const imageUrls = getPostImageUrls(post);
+  const images = getPostImages(post);
   const hasText = Boolean(post.text?.trim());
 
   return (
@@ -33,14 +45,15 @@ const PostCard: React.FC<{ post: LinkedInPost }> = ({ post }) => {
     >
       <div className="p-6">
         <div className="flex items-center gap-3 mb-3">
-          <img
-            src={post.author.profile_picture}
-            alt={`${post.author.first_name} ${post.author.last_name}`}
-            className="w-10 h-10 rounded-full object-cover"
-            onError={(e) => {
-              (e.target as HTMLImageElement).style.display = 'none';
-            }}
-          />
+          {authorAvatar ? (
+            <img
+              src={authorAvatar}
+              alt={`${post.author.first_name} ${post.author.last_name}`}
+              width={40}
+              height={40}
+              className="w-10 h-10 rounded-full object-cover"
+            />
+          ) : null}
           <div>
             <p className="font-medium text-sm text-base-content opacity-80">
               {post.author.first_name} {post.author.last_name}
@@ -64,16 +77,19 @@ const PostCard: React.FC<{ post: LinkedInPost }> = ({ post }) => {
           </p>
         ) : null}
 
-        {imageUrls.length > 0 ? (
+        {images.length > 0 ? (
           <div
-            className={`grid gap-2 ${imageUrls.length > 1 ? 'grid-cols-2' : 'grid-cols-1'} ${hasText ? 'mt-3' : ''}`}
+            className={`grid gap-2 ${images.length > 1 ? 'grid-cols-2' : 'grid-cols-1'} ${hasText ? 'mt-3' : ''}`}
           >
-            {imageUrls.map((src, idx) => (
+            {images.map((image, idx) => (
               <img
                 key={`${post.full_urn}-img-${idx}`}
-                src={src}
+                src={image.url}
                 alt={`Изображение публикации — ${post.author.first_name} ${post.author.last_name}`}
+                width={image.width}
+                height={image.height}
                 loading="lazy"
+                decoding="async"
                 className="w-full max-h-80 rounded-lg object-contain bg-base-200"
                 onError={(e) => {
                   (e.target as HTMLImageElement).style.display = 'none';
@@ -101,7 +117,12 @@ const PostCard: React.FC<{ post: LinkedInPost }> = ({ post }) => {
   );
 };
 
-const PublicationsCard: React.FC<Props> = ({ posts, loading, profileUrl }) => {
+const PublicationsCard: React.FC<Props> = ({
+  posts,
+  loading,
+  profileUrl,
+  authorAvatar,
+}) => {
   const latest = [...(posts ?? [])]
     .sort(
       (left, right) =>
@@ -119,9 +140,9 @@ const PublicationsCard: React.FC<Props> = ({ posts, loading, profileUrl }) => {
       >
         <div className="card-body">
           <div className="mx-3 mb-2">
-            <h5 className="card-title">
+            <h2 className="card-title">
               <span className="text-base-content opacity-70">Публикации</span>
-            </h5>
+            </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {loading ? (
@@ -146,7 +167,13 @@ const PublicationsCard: React.FC<Props> = ({ posts, loading, profileUrl }) => {
                 </div>
               ))
             ) : latest.length > 0 ? (
-              latest.map((post) => <PostCard key={post.full_urn} post={post} />)
+              latest.map((post) => (
+                <PostCard
+                  key={post.full_urn}
+                  post={post}
+                  authorAvatar={authorAvatar}
+                />
+              ))
             ) : (
               <div className="text-center mb-6">
                 <AiOutlineContainer className="mx-auto h-12 w-12 opacity-30" />

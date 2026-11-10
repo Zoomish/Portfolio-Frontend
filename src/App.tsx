@@ -65,11 +65,23 @@ function App() {
 
   useEffect(() => {
     setTheme(getInitialTheme());
+  }, []);
 
+  useEffect(() => {
     const { hotjarId, hotjarVersion } = APP_CONFIG.analytics;
-    if (hotjarId) {
+    if (!hotjarId) return;
+
+    const start = () => {
       hotjar.initialize({ id: hotjarId, sv: hotjarVersion });
+    };
+
+    if (typeof window.requestIdleCallback === 'function') {
+      const id = window.requestIdleCallback(start);
+      return () => window.cancelIdleCallback(id);
     }
+
+    const timer = window.setTimeout(start, 1);
+    return () => window.clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -115,6 +127,7 @@ function App() {
                     posts={posts}
                     loading={loading}
                     profileUrl={profile?.profile_url}
+                    authorAvatar={profile?.profile_picture_url ?? ''}
                   />
                 ) : null}
                 {externalProjects.projects?.length > 0 && (

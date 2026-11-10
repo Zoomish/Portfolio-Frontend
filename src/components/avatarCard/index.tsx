@@ -5,7 +5,6 @@ import { RiMailFill } from 'react-icons/ri';
 import { FALLBACK_IMAGE } from '../../constants';
 import type { LinkedInBasicInfo, LinkedInContactResponse } from '../../types';
 import { skeleton } from '../../utils';
-import LazyImage from '../lazyImage';
 
 interface AvatarCardProps {
   profile: LinkedInBasicInfo | null;
@@ -39,7 +38,7 @@ const Row = ({
           href={href}
           target="_blank"
           rel="noreferrer"
-          className="opacity-80 hover:opacity-100 break-words"
+          className="text-base-content text-opacity-100 break-words"
         >
           {value}
         </a>
@@ -87,18 +86,17 @@ const AvatarCard: React.FC<AvatarCardProps> = ({
                     : ''
                 }`}
               >
-                <LazyImage
+                <img
                   src={profile.profile_picture_url || FALLBACK_IMAGE}
                   alt={profile.fullname}
-                  placeholder={skeleton({
-                    widthCls: 'w-full',
-                    heightCls: 'h-full',
-                    shape: '',
-                  })}
+                  width={128}
+                  height={128}
+                  fetchPriority="high"
+                  decoding="async"
                 />
               </div>
               {profile.open_to_work && (
-                <span className="badge badge-success badge-sm font-bold text-white absolute -top-1 -right-16 z-10 hidden sm:inline-flex">
+                <span className="badge badge-open-to-work badge-sm font-bold text-white absolute -top-1 -right-16 z-10 hidden sm:inline-flex">
                   #Open to Work
                 </span>
               )}
@@ -106,17 +104,17 @@ const AvatarCard: React.FC<AvatarCardProps> = ({
           )}
           <div className="min-w-0 text-left">
             {!loading && profile?.open_to_work && (
-              <span className="badge badge-success badge-sm font-bold text-white mb-1 sm:hidden">
+              <span className="badge badge-open-to-work badge-sm font-bold text-white mb-1 sm:hidden">
                 #Open to Work
               </span>
             )}
-            <h5 className="font-bold text-2xl">
+            <h1 className="font-bold text-2xl">
               {loading || !profile ? (
                 skeleton({ widthCls: 'w-40', heightCls: 'h-8' })
               ) : (
                 <span className="text-base-content">{profile.fullname}</span>
               )}
-            </h5>
+            </h1>
             <div className="mt-2 text-sm text-base-content text-opacity-80">
               {loading || !profile
                 ? skeleton({ widthCls: 'w-48', heightCls: 'h-5' })

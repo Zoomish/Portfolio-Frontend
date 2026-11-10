@@ -1,13 +1,16 @@
-import { existsSync, mkdirSync, unlinkSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import sharp from 'sharp';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const outFile = resolve(root, 'src/generated/site-content.json');
 const publicDir = resolve(root, 'public/generated');
 const api = 'https://portfolio-backend-107i.onrender.com/api';
 const timeoutMs = 60_000;
-const imageExtensions = ['.jpg', '.jpeg', '.png', '.webp', '.gif'];
+const imageExtensions = ['.webp', '.jpg', '.jpeg', '.png', '.gif'];
+const avatarEdge = 256;
+const logoEdge = 96;
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === 'object' && value !== null && !Array.isArray(value);
@@ -24,37 +27,6 @@ const getJson = async (path: string): Promise<unknown> => {
   return response.json();
 };
 
-const extensionFrom = (bytes: Uint8Array, contentType: string) => {
-  if (bytes.length >= 3 && bytes[0] === 0xff && bytes[1] === 0xd8) return '.jpg';
-  if (
-    bytes.length >= 4 &&
-    bytes[0] === 0x89 &&
-    bytes[1] === 0x50 &&
-    bytes[2] === 0x4e &&
-    bytes[3] === 0x47
-  ) {
-    return '.png';
-  }
-  if (
-    bytes.length >= 12 &&
-    bytes[0] === 0x52 &&
-    bytes[1] === 0x49 &&
-    bytes[2] === 0x46 &&
-    bytes[3] === 0x46
-  ) {
-    return '.webp';
-  }
-  if (bytes.length >= 3 && bytes[0] === 0x47 && bytes[1] === 0x49) return '.gif';
-
-  const type = contentType.split(';')[0]?.trim().toLowerCase();
-  if (type === 'image/png') return '.png';
-  if (type === 'image/webp') return '.webp';
-  if (type === 'image/gif') return '.gif';
-  if (type === 'image/jpeg' || type === 'image/jpg') return '.jpg';
-
-  return '.jpg';
-};
-
 const existingPublicPath = (baseName: string) => {
   for (const ext of imageExtensions) {
     if (existsSync(resolve(publicDir, `${baseName}${ext}`))) {
@@ -65,25 +37,60 @@ const existingPublicPath = (baseName: string) => {
   return null;
 };
 
-const downloadImage = async (url: string, baseName: string) => {
-  if (url.startsWith('/generated/')) return url;
+const writeOptimized = async (
+  bytes: Uint8Array,
+  baseName: string,
+  maxEdge: number,
+) => {
+  const optimized = await sharp(bytes)
+    .rotate()
+    .resize({
+      width: maxEdge,
+      height: maxEdge,
+      fit: 'inside',
+      withoutEnlargement: true,
+    })
+    .webp({ quality: 80 })
+    .toBuffer();
 
+  mkdirSync(publicDir, { recursive: true });
+
+  for (const stale of imageExtensions) {
+    if (stale === '.webp') continue;
+    const stalePath = resolve(publicDir, `${baseName}${stale}`);
+    if (existsSync(stalePath)) unlinkSync(stalePath);
+  }
+
+  writeFileSync(resolve(publicDir, `${baseName}.webp`), optimized);
+  return `/generated/${baseName}.webp`;
+};
+
+const readLocalImage = (url: string) => {
+  const name = url.split('/').pop();
+  if (!name) return null;
+
+  const file = resolve(publicDir, name);
+  if (!existsSync(file)) return null;
+
+  return new Uint8Array(readFileSync(file));
+};
+
+const downloadImage = async (url: string, baseName: string, maxEdge: number) => {
   try {
-    const response = await fetch(url, { signal: AbortSignal.timeout(timeoutMs) });
-    if (!response.ok) throw new Error(`${url} responded ${response.status}`);
+    let bytes: Uint8Array | null = null;
 
-    const bytes = new Uint8Array(await response.arrayBuffer());
-    const ext = extensionFrom(bytes, response.headers.get('content-type') ?? '');
-    mkdirSync(publicDir, { recursive: true });
-
-    for (const stale of imageExtensions) {
-      if (stale === ext) continue;
-      const stalePath = resolve(publicDir, `${baseName}${stale}`);
-      if (existsSync(stalePath)) unlinkSync(stalePath);
+    if (url.startsWith('/generated/')) {
+      bytes = readLocalImage(url);
+      if (!bytes) return existingPublicPath(baseName) ?? url;
+    } else {
+      const response = await fetch(url, {
+        signal: AbortSignal.timeout(timeoutMs),
+      });
+      if (!response.ok) throw new Error(`${url} responded ${response.status}`);
+      bytes = new Uint8Array(await response.arrayBuffer());
     }
 
-    writeFileSync(resolve(publicDir, `${baseName}${ext}`), bytes);
-    return `/generated/${baseName}${ext}`;
+    return await writeOptimized(bytes, baseName, maxEdge);
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     const previous = existingPublicPath(baseName);
@@ -113,6 +120,7 @@ const localizeImages = async (linkedin: unknown) => {
     basicInfo.profile_picture_url = await downloadImage(
       basicInfo.profile_picture_url,
       'avatar',
+      avatarEdge,
     );
   }
 
@@ -129,6 +137,7 @@ const localizeImages = async (linkedin: unknown) => {
     item.company_logo_url = await downloadImage(
       item.company_logo_url,
       `company-${companyId}`,
+      logoEdge,
     );
   }
 };
@@ -160,6 +169,7 @@ const main = async () => {
 
     if (existsSync(outFile)) {
       console.warn(`fetch failed, keeping previous snapshot: ${message}`);
+      await upgradeStoredImages();
       return;
     }
 
@@ -168,4 +178,21 @@ const main = async () => {
   }
 };
 
-main();
+const upgradeStoredImages = async () => {
+  const kept = JSON.parse(readFileSync(outFile, 'utf8')) as {
+    linkedin: unknown;
+  };
+  await localizeImages(kept.linkedin);
+  writeFileSync(outFile, `${JSON.stringify(kept, null, 2)}\n`);
+  console.log(`optimized images in ${outFile}`);
+};
+
+if (process.argv.includes('--local')) {
+  upgradeStoredImages().catch((error: unknown) => {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(message);
+    process.exit(1);
+  });
+} else {
+  main();
+}

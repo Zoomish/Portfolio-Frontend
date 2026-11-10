@@ -34,7 +34,7 @@ const RepoCard: React.FC<{ repo: FilteredRepo }> = ({ repo }) => (
               href={repo.link}
               target="_blank"
               rel="noreferrer"
-              className="text-base-content opacity-40 hover:opacity-80 transition-opacity"
+              className="inline-flex h-6 w-6 items-center justify-center text-base-content opacity-40 hover:opacity-80 transition-opacity"
               title="Демо"
             >
               <FaExternalLinkAlt size={12} />
@@ -44,7 +44,7 @@ const RepoCard: React.FC<{ repo: FilteredRepo }> = ({ repo }) => (
             href={repo.url}
             target="_blank"
             rel="noreferrer"
-            className="text-base-content opacity-40 hover:opacity-80 transition-opacity"
+            className="inline-flex h-6 w-6 items-center justify-center text-base-content opacity-40 hover:opacity-80 transition-opacity"
             title="Открыть на GitHub"
           >
             <FaGithub size={14} />
@@ -87,11 +87,11 @@ const GithubCard: React.FC<Props> = ({ repos, loading }) => {
       <div className="card compact shadow bg-base-100 bg-opacity-40">
         <div className="card-body">
           <div className="mx-3 mb-2">
-            <h5 className="card-title">
+            <h2 className="card-title">
               <span className="text-base-content opacity-70">
                 Проекты GitHub
               </span>
-            </h5>
+            </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {loading

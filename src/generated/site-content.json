@@ -256,7 +256,7 @@
             "public_identifier": "zoomish",
             "current_company_url": "https://www.linkedin.com/company/kvado",
             "current_company_urn": "90890685",
-            "profile_picture_url": "/generated/avatar.png",
+            "profile_picture_url": "/generated/avatar.webp",
             "show_follower_count": false,
             "top_education_school": {
               "url": "",
@@ -287,7 +287,7 @@
               "description": "Developed Go backend microservices for a cloud PropTech / utility-billing platform used by management companies across Russia — personal accounts, recurring charges, and B2B APIs for operational clients. \n\nDesigned and shipped gRPC service contracts between billing services, with MySQL as the primary store, Redis for hot-path caching and idempotency keys, and MongoDB for document-oriented payloads where the domain required it. \n\nBuilt asynchronous processing for payment documents on RabbitMQ: retry with backoff, dead-letter queue (DLQ) for poison messages, and consumer idempotency keyed by business identifiers to keep charges consistent under at-least-once delivery. \n\nImproved service observability with Prometheus metrics, Grafana dashboards, and Jaeger traces; supported GitLab CI pipelines and Docker/Kubernetes deployments for staging and production. \n\nOwned unit and integration tests for critical billing paths, participated in code reviews, and maintained technical API documentation for internal consumers.",
               "location_type": "Remote",
               "employment_type": "Full-time",
-              "company_logo_url": "/generated/company-90890685.jpg",
+              "company_logo_url": "/generated/company-90890685.webp",
               "company_linkedin_url": "https://www.linkedin.com/company/90890685/"
             },
             {
@@ -313,7 +313,7 @@
               "description": "Joined the Core / order-processing product team building Go microservices for checkout and customer-order flows used across web, mobile, and internal channels.  Worked specification-first: authored and maintained OpenAPI/Swagger contracts; used the internal Gogi toolchain to generate service boilerplate (routing, validation, logging, metrics) so new endpoints stayed consistent across the Go platform.  Designed and delivered a checkout microservice in Go with PostgreSQL storage, Idempotency-Key handling for safe client retries, and a Kafka event model (e.g. order.created) for downstream notification and fulfillment consumers.  Built and maintained a NestJS (Node.js) BFF layer and React/TypeScript admin UI for operational tooling around checkout and order status — bridging frontend clients and Go domain services.  Wrote Gonkey functional scenario tests for critical order flows; helped cut duplicate order creation under network retries and improve predictability of the checkout path.",
               "location_type": "Remote",
               "employment_type": "Full-time",
-              "company_logo_url": "/generated/company-2003349.jpg",
+              "company_logo_url": "/generated/company-2003349.webp",
               "company_linkedin_url": "https://www.linkedin.com/company/2003349/"
             },
             {
@@ -339,7 +339,7 @@
               "description": "Developed the frontend for a web catalog of organizations in 2GIS Online: company and branch cards, faceted filters, search results, and SPA navigation for high-traffic catalog pages.\n\nEngineered list rendering performance using virtualization for long search result sets, reducing scroll jank by ~60% on dense organization listings without sacrificing interaction quality.\n\nIntegrated REST APIs for geodata and search — wiring pagination, filters, and map-linked catalog states; introduced code-splitting and lazy routes to keep initial load budgets under control.\n\nBuilt and maintained a Jest + React Testing Library suite covering core catalog modules (70%+ coverage on key paths) and collaborated with backend/QA in a product squad of ~7 people.\n\nShipped incremental UX improvements for branch cards and filters that improved perceived responsiveness of the catalog browsing flow.",
               "location_type": "Remote",
               "employment_type": "Full-time",
-              "company_logo_url": "/generated/company-5047074.jpg",
+              "company_logo_url": "/generated/company-5047074.webp",
               "company_linkedin_url": "https://www.linkedin.com/company/5047074/"
             }
           ]

@@ -22,7 +22,10 @@ const readSiteContent = (): SiteContent => {
 };
 
 export default defineConfig(() => {
-  const seo = resolveSeoConfig(readSiteContent());
+  const content = readSiteContent();
+  const seo = resolveSeoConfig(content);
+  const lcpImage =
+    content.linkedin.details?.data?.data?.basic_info?.profile_picture_url ?? '';
 
   return {
     base: '/',
@@ -33,6 +36,7 @@ export default defineConfig(() => {
           data: {
             ...buildHtmlInjectData(seo),
             gtmId: APP_CONFIG.analytics.gtmId,
+            lcpImage,
           },
         },
       }),
@@ -41,6 +45,7 @@ export default defineConfig(() => {
         ? [
             VitePWA({
               registerType: 'autoUpdate',
+              injectRegister: 'script-defer',
               workbox: {
                 navigateFallback: undefined,
               },

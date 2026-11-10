@@ -5,6 +5,9 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <% if (lcpImage) { %>
+    <link rel="preload" as="image" href="<%- lcpImage %>" fetchpriority="high" />
+    <% } %>
     <title><%- metaTitle %></title>
     <link rel="canonical" href="<%- canonicalUrl %>" />
     <link rel="manifest" crossorigin="use-credentials" href="/manifest.json" />
@@ -21,22 +24,6 @@
     <% if (yandexSiteVerification) { %>
     <meta name="yandex-verification" content="<%- yandexSiteVerification %>" />
     <% } %>
-    <% if (gtmId) { %>
-    <script>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, 'script', 'dataLayer', '<%- gtmId %>');
-    </script>
-    <% } %>
-    <script src="https://t.contentsquare.net/uxa/02e18f7c4fef5.js"></script>
-
     <meta itemprop="name" content="<%- metaTitle %>" />
     <meta itemprop="description" content="<%- metaDescription %>" />
     <meta itemprop="image" content="<%- metaImageURL %>" />
@@ -89,5 +76,25 @@
     <%- staticSeoHtml %>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      window.addEventListener('load', function () {
+        <% if (gtmId) { %>
+        (function (w, d, s, l, i) {
+          w[l] = w[l] || [];
+          w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+          var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s),
+            dl = l != 'dataLayer' ? '&l=' + l : '';
+          j.async = true;
+          j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+          f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', '<%- gtmId %>');
+        <% } %>
+        var cs = document.createElement('script');
+        cs.async = true;
+        cs.src = 'https://t.contentsquare.net/uxa/02e18f7c4fef5.js';
+        document.body.appendChild(cs);
+      });
+    </script>
   </body>
 </html>

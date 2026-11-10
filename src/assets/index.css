@@ -49,6 +49,12 @@ code {
   line-height: 1.75rem;
 }
 
+.badge-open-to-work {
+  background-color: #047857;
+  border-color: #047857;
+  color: #ffffff;
+}
+
 svg {
   vertical-align: unset;
 }

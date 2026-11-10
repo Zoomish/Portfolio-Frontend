@@ -13,13 +13,13 @@ const EducationCard = ({
     <div className="card shadow-lg compact bg-base-100">
       <div className="card-body">
         <div className="mx-3">
-          <h5 className="card-title">
+          <h2 className="card-title">
             {loading ? (
               skeleton({ widthCls: 'w-32', heightCls: 'h-8' })
             ) : (
               <span className="text-base-content opacity-70">Образование</span>
             )}
-          </h5>
+          </h2>
         </div>
         <ul className="mx-3 mt-2 space-y-2 text-sm text-base-content text-opacity-60">
           {loading ? (
