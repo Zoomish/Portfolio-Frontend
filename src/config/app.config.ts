@@ -25,7 +25,7 @@ export interface ThemeConfig {
 }
 
 export const APP_CONFIG = {
-  siteUrl: 'https://zoomish-portfolio.vercel.app',
+  siteUrl: 'https://zoomish.tech',
   locale: 'ru_RU',
   googleSiteVerification: 'Dkb4KB5OpqSqQyUolntbKUHxG5MnZthFZTQcmyEchiM',
   analytics: {
