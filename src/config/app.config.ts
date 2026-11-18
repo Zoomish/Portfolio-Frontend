@@ -44,7 +44,7 @@ export const APP_CONFIG = {
 
   // Fallback social links (used if not available from LinkedIn contact API)
   social: {
-    email: 'zoomish39@gmail.com',
+    email: 'work@zoomish.tech',
   },
 
   externalProjects: {
